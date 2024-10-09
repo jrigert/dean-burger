@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-white: #ffffff;
+  --color-black: #171717;
+  --color-orange: 251, 122, 43;
+
+  --color-background: var(--color-white);
+  --color-foreground: var(--color-black);
+  --color-primary: 251, 122, 43;
+  --color-primary-foreground: var(--color-foreground);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /*--color-background: var(--color-black);*/
+    /*--color-foreground: var(--color-white)*/
+  }
+}
+
+body {
+  color: var(--color-foreground);
+  background: var(--color-background);
+  font-family: Arial, Helvetica, sans-serif;
+}
