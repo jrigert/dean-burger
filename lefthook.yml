@@ -1,3 +1,10 @@
+pre-push:
+  parallel: true
+  commands:
+    test:
+      glob: "*.{js,ts,jsx,tsx}"
+      run: npm test
+
 pre-commit:
  parallel: true
  commands:

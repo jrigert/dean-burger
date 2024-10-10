@@ -12,9 +12,12 @@ const openSans = Open_Sans({
   variable: "--font-open-sans",
 });
 
-export const fonts = {
+export const index = {
   teko,
   openSans,
 };
 
-export const fontVariableClassNames = `${fonts.teko.variable} ${fonts.openSans.variable}`;
+export const fontVariableClassNames = `${index.teko.variable} ${index.openSans.variable}`;
+
+// styles to be shared by Storybook and NextJS root elements
+export const baseStyles = `${fontVariableClassNames} antialiased font-open-sans text-foreground`;

@@ -1,4 +1,4 @@
-import { fontVariableClassNames } from "@/styles/fonts";
+import { baseStyles } from "@/styles";
 import type { Metadata } from "next";
 import "../styles/globals.css";
 import type { ReactNode } from "react";
@@ -15,9 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${fontVariableClassNames} antialiased font-open-sans`}>
-        {children}
-      </body>
+      <body className={baseStyles}>{children}</body>
     </html>
   );
 }

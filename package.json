@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "checktypes": "tsc --noEmit",
     "dev": "next dev",
     "build": "next build",
+    "build-storybook": "storybook build",
     "start": "next start",
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "checktypes": "tsc --noEmit"
+    "test": "vitest"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.0",
@@ -28,17 +29,22 @@
     "@storybook/nextjs": "^8.3.5",
     "@storybook/react": "^8.3.5",
     "@storybook/test": "^8.3.5",
+    "@testing-library/react": "^16.0.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@vitejs/plugin-react": "^4.3.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.15",
     "eslint-plugin-storybook": "^0.9.0",
+    "jsdom": "^25.0.1",
     "lefthook": "^1.7.18",
     "postcss": "^8",
     "prettier": "^3.3.3",
     "storybook": "^8.3.5",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vite-tsconfig-paths": "^5.0.1",
+    "vitest": "^2.1.2"
   }
 }

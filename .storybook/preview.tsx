@@ -1,4 +1,4 @@
-import { fontVariableClassNames } from "@/styles/fonts";
+import { baseStyles } from "@/styles";
 import type { Preview } from "@storybook/react";
 import "../src/styles/globals.css";
 
@@ -13,7 +13,7 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <main className={`${fontVariableClassNames} antialiased font-open-sans`}>
+      <main className={baseStyles}>
         <Story />
       </main>
     ),
