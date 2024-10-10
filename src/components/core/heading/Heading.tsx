@@ -12,7 +12,7 @@ const headingVariants = cva(["font-bold font-teko"], {
       h2: ["text-4xl", "mb-4", "sm:text-5xl"],
       h3: ["text-2xl", "mb-3", "sm:text-3xl"],
       h4: ["text-xl", "mb-2", "sm:text-2xl"],
-      h5: ["text-lg", "mb-2", "sm:text-xl"],
+      h5: ["text-lg", "sm:text-xl"],
     },
   },
   defaultVariants: {
