@@ -8,6 +8,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        teko: "var(--font-teko)",
+        "open-sans": "var(--font-open-sans)",
+      },
       colors: {
         background: "rgba(--color-background, <alpha-value>)",
         foreground: "rgba(--color-foreground, <alpha-value>)",
