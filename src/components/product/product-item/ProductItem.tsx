@@ -1,5 +1,6 @@
 import { Heading } from "@/components/core/heading/Heading";
 import { Price } from "@/components/core/price/Price";
+import { Routes } from "@/data/routes";
 import { Product } from "@/types/product";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,8 +16,8 @@ export const ProductItem: FunctionComponent<ProductItemProps> = (props) => {
 
   return (
     <Link
-      href={slug}
-      className="block w-full max-w-[400px] overflow-hidden rounded-xl shadow hover:shadow-lg sm:w-[250px]"
+      href={`/${Routes.ProductDetails}/${slug}`}
+      className="hover:scale-102 block w-full max-w-[400px] overflow-hidden rounded-xl shadow transition hover:shadow-lg sm:w-[250px]"
     >
       <div className="relative h-[250px] w-full sm:h-[200px]">
         {/*NOTE: setting empty alt tag here as we don't get this from the API and

@@ -13,3 +13,10 @@ export const getProducts = async (): Promise<Product[]> => {
   const data: GetProductsResponse = await response.json();
   return data.products;
 };
+
+export const getProductBySlug = async (
+  slug: string,
+): Promise<Product | undefined> => {
+  const products = await getProducts();
+  return products.find((product) => product.slug === slug);
+};

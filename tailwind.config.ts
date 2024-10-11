@@ -3,9 +3,6 @@ import type { Config } from "tailwindcss";
 const config: Config = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
-    container: {
-      padding: "2rem",
-    },
     extend: {
       fontFamily: {
         teko: "var(--font-teko)",
@@ -18,6 +15,9 @@ const config: Config = {
           DEFAULT: "rgba(var(--color-primary), <alpha-value>)",
           foreground: "rgba(var(--color-primary-foreground), <alpha-value>)",
         },
+      },
+      scale: {
+        "102": "1.02",
       },
     },
   },

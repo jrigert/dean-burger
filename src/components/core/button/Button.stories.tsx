@@ -5,14 +5,27 @@ const meta = {
   component: Button,
   title: "Core/Button",
   tags: ["autodocs"],
+  argTypes: {
+    variant: {
+      control: { type: "radio" },
+      options: ["solid", "link"],
+    },
+  },
 } satisfies Meta<typeof Button>;
 
 export default meta;
 type ButtonStory = StoryObj<typeof meta>;
 
-export const Primary: ButtonStory = {
+export const SolidPrimary: ButtonStory = {
   args: {
     children: "Click Me!",
+  },
+};
+
+export const Link: ButtonStory = {
+  args: {
+    children: "Click Me!",
+    variant: "link",
   },
 };
 

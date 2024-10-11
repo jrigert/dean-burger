@@ -1,4 +1,5 @@
 import { getProducts } from "@/api/products";
+import { Container } from "@/components/core/container/Container";
 import { ProductList } from "@/components/product/product-list/ProductList";
 import { NextPage } from "next";
 
@@ -8,9 +9,9 @@ const HomePage: NextPage = async () => {
 
   return (
     <main>
-      <section className="container mx-auto py-10">
+      <Container tag="section" className="container mx-auto py-10">
         <ProductList products={products} />
-      </section>
+      </Container>
     </main>
   );
 };
