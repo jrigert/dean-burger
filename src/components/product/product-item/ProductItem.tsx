@@ -36,7 +36,7 @@ export const ProductItem: FunctionComponent<ProductItemProps> = (props) => {
           {name}
         </Heading>
 
-        <strong className="font-teko text-primary">
+        <strong className="font-teko text-slate-600">
           <Price price={price} />
         </strong>
 

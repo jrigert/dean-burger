@@ -1,6 +1,8 @@
 import { classNames } from "@/utils/style";
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { cva, VariantProps } from "class-variance-authority";
-import { ComponentProps, FunctionComponent, useMemo } from "react";
+import { type ComponentProps, type FunctionComponent, useMemo } from "react";
 
 const buttonVariants = cva(
   [
@@ -25,6 +27,7 @@ const buttonVariants = cva(
           "hover:scale-105",
         ],
         link: ["hover:underline"],
+        icon: [],
       },
       color: {
         primary: [],
@@ -41,7 +44,7 @@ const buttonVariants = cva(
         ],
       },
       {
-        variant: "link",
+        variant: ["link", "icon"],
         color: "primary",
         className: ["text-primary"],
       },
@@ -56,15 +59,22 @@ const buttonVariants = cva(
 export type ButtonVariantProps = VariantProps<typeof buttonVariants>;
 
 export type ButtonProps = Omit<ComponentProps<"button">, "color"> &
-  ButtonVariantProps;
+  ButtonVariantProps & {
+    icon?: IconDefinition;
+  };
 
 export const Button: FunctionComponent<ButtonProps> = (props) => {
-  const { className, variant, color, ...buttonProps } = props;
+  const { children, className, variant, color, icon, ...buttonProps } = props;
 
   const combinedClassNames = useMemo(() => {
     const headingClassNames = buttonVariants({ variant, color });
     return classNames(headingClassNames, className);
   }, [className, variant, color]);
 
-  return <button className={combinedClassNames} {...buttonProps} />;
+  return (
+    <button className={combinedClassNames} {...buttonProps}>
+      {icon ? <FontAwesomeIcon icon={icon} /> : null}
+      {children}
+    </button>
+  );
 };

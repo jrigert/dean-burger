@@ -18,7 +18,7 @@ const ProductDetailsPage: NextPage<ProductDetailsPageProps> = async (props) => {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center py-6">
+    <main className="-mt-14 flex min-h-screen items-center justify-center">
       <ProductDetails product={product} />
     </main>
   );

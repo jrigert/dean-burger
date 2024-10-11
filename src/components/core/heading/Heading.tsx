@@ -8,7 +8,7 @@ export type HeadingLevel = (typeof VALID_HEADINGS)[number];
 const headingVariants = cva(["font-bold font-teko"], {
   variants: {
     level: {
-      h1: ["text-5xl", "sm:text-7xl"],
+      h1: ["text-5xl", "sm:text-6xl"],
       h2: ["text-4xl", "sm:text-5xl"],
       h3: ["text-2xl", "sm:text-3xl"],
       h4: ["text-xl", "sm:text-2xl"],

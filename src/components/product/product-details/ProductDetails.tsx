@@ -19,7 +19,7 @@ export const ProductDetails: FunctionComponent<ProductDetailsProps> = (
 
   return (
     <div className="w-full sm:max-w-[600px]">
-      <Container className="mb-4">
+      <Container className="mb-4 mt-4">
         <BackButton text="Back" />
       </Container>
 
@@ -39,7 +39,7 @@ export const ProductDetails: FunctionComponent<ProductDetailsProps> = (
         <div className="pt-4">
           <Heading tag="h1">{name}</Heading>
 
-          <strong className="font-teko text-3xl text-primary">
+          <strong className="font-teko text-3xl text-slate-600">
             <Price price={price} />
           </strong>
 

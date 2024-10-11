@@ -1,4 +1,6 @@
+import { Page } from "@/components/layout/page/Page";
 import { baseStyles } from "@/styles";
+import { classNames } from "@/utils/style";
 import type { Metadata } from "next";
 import "../styles/globals.css";
 import type { ReactNode } from "react";
@@ -20,7 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={baseStyles}>{children}</body>
+      <body className={classNames(baseStyles, "bg-background")}>
+        <Page>{children}</Page>
+      </body>
     </html>
   );
 }
