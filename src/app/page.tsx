@@ -8,11 +8,9 @@ const HomePage: NextPage = async () => {
   const products = await getProducts();
 
   return (
-    <main>
-      <Container tag="section" className="container mx-auto py-10">
-        <ProductList products={products} />
-      </Container>
-    </main>
+    <Container tag="section" className="container mx-auto pb-12 pt-24">
+      <ProductList products={products} />
+    </Container>
   );
 };
 

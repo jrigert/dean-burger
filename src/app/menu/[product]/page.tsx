@@ -18,9 +18,9 @@ const ProductDetailsPage: NextPage<ProductDetailsPageProps> = async (props) => {
   }
 
   return (
-    <main className="-mt-14 flex min-h-screen items-center justify-center">
+    <div className="flex items-center justify-center pt-14 md:min-h-screen">
       <ProductDetails product={product} />
-    </main>
+    </div>
   );
 };
 

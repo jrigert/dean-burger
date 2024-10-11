@@ -27,7 +27,7 @@ const buttonVariants = cva(
           "hover:scale-105",
         ],
         link: ["hover:underline"],
-        icon: [],
+        icon: ["leading-none"],
       },
       color: {
         primary: [],
