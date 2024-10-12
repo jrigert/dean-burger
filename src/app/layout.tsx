@@ -1,4 +1,4 @@
-import { PageTemplate } from "@/components/layout/page-template/PageTemplate";
+import { PageController } from "@/controllers/PageController";
 import { baseStyles } from "@/styles";
 import { classNames } from "@/utils/style";
 import type { Metadata } from "next";
@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={classNames(baseStyles, "bg-background")}>
-        <PageTemplate>{children}</PageTemplate>
+        <PageController>{children}</PageController>
       </body>
     </html>
   );

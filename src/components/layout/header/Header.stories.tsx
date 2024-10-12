@@ -14,5 +14,14 @@ export const Default: HeaderStory = {
   args: {
     // remove the fixed positioning
     className: "relative",
+    orderCount: 0,
+  },
+};
+
+export const WithOrderCount: HeaderStory = {
+  args: {
+    // remove the fixed positioning
+    className: "relative",
+    orderCount: 4,
   },
 };

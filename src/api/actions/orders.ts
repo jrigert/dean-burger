@@ -1,8 +1,10 @@
 "use server";
 
 import prisma from "@/api/db";
+import { getOrderIdCookie } from "@/api/orders";
 import { ORDER_ID_COOKIE_KEY } from "@/constants/cookies";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export interface AddItemToOrderPayload {
   productId: string;
@@ -13,8 +15,8 @@ export const addItemToOrder = async (payload: AddItemToOrderPayload) => {
   const { productId, quantity } = payload;
   const cookieStore = cookies();
 
-  const orderIdCookie = cookieStore.get(ORDER_ID_COOKIE_KEY);
-  let orderId = orderIdCookie?.value ? Number(orderIdCookie.value) : undefined;
+  // get orderId from cookie if it exists
+  let orderId = getOrderIdCookie(cookieStore);
 
   // create a new order if we don't have one
   if (!orderId) {
@@ -51,4 +53,6 @@ export const addItemToOrder = async (payload: AddItemToOrderPayload) => {
       },
     });
   }
+
+  redirect("/");
 };

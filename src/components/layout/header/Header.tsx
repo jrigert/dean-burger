@@ -1,3 +1,4 @@
+import { Badge } from "@/components/core/badge/Badge";
 import { Button } from "@/components/core/button/Button";
 import { classNames } from "@/utils/style";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
@@ -6,10 +7,11 @@ import type { FunctionComponent } from "react";
 
 export interface HeaderProps {
   className?: string;
+  orderCount: number;
 }
 
 export const Header: FunctionComponent<HeaderProps> = (props) => {
-  const { className } = props;
+  const { className, orderCount } = props;
 
   return (
     <header
@@ -26,7 +28,18 @@ export const Header: FunctionComponent<HeaderProps> = (props) => {
           Dean Burger
         </Link>
 
-        <Button variant="icon" icon={faShoppingCart} />
+        <div className="relative">
+          <Button variant="icon" icon={faShoppingCart} aria-label="Cart" />
+
+          {orderCount ? (
+            <Badge
+              className="absolute -right-3 -top-2"
+              aria-label={`There are ${orderCount} items in your cart`}
+            >
+              {orderCount}
+            </Badge>
+          ) : null}
+        </div>
       </div>
     </header>
   );
