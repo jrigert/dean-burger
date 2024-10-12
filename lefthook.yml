@@ -3,7 +3,7 @@ pre-push:
   commands:
     test:
       glob: "*.{js,ts,jsx,tsx}"
-      run: npm test
+      run: npm run test:ci
 
 pre-commit:
  parallel: true

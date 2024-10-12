@@ -10,7 +10,8 @@
     "start": "next start",
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
-    "test": "vitest"
+    "test": "vitest",
+    "test:ci": "vitest run"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
