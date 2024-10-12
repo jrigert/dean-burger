@@ -1,4 +1,5 @@
 import { PageController } from "@/controllers/PageController";
+import { AlertProvider } from "@/providers/AlertProvider";
 import { baseStyles } from "@/styles";
 import { classNames } from "@/utils/style";
 import type { Metadata } from "next";
@@ -23,7 +24,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={classNames(baseStyles, "bg-background")}>
-        <PageController>{children}</PageController>
+        <AlertProvider>
+          <PageController>{children}</PageController>
+        </AlertProvider>
       </body>
     </html>
   );

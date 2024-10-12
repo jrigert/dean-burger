@@ -1,3 +1,4 @@
+import { Alert } from "@/components/core/alert/Alert";
 import { Breakpoint } from "@/components/core/breakpoint/Breakpoint";
 import { Header } from "@/components/layout/header/Header";
 import { OrderWithItems } from "@/types/order";
@@ -17,6 +18,7 @@ export const PageTemplate: FunctionComponent<
   return (
     <>
       <Header orderCount={orderCount} />
+      <Alert />
       <Breakpoint />
       <main>{children}</main>
     </>

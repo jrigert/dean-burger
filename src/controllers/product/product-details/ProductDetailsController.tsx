@@ -2,6 +2,7 @@
 
 import { addItemToOrder } from "@/api/actions/orders";
 import { ProductDetails } from "@/components/product/product-details/ProductDetails";
+import { useAlert } from "@/hooks/useAlert";
 import { Product } from "@/types/product";
 import type { FunctionComponent } from "react";
 
@@ -13,13 +14,16 @@ export const ProductDetailsController: FunctionComponent<
   ProductDetailsControllerProps
 > = (props) => {
   const { product } = props;
+  const { setMessage } = useAlert();
 
-  return (
-    <ProductDetails
-      onAddToCart={(product, quantity) =>
-        addItemToOrder({ productId: product.id, quantity })
-      }
-      product={product}
-    />
-  );
+  const handleAddToCart = async (product: Product, quantity: number) => {
+    await addItemToOrder({
+      productId: product.id,
+      quantity,
+    });
+
+    setMessage(`Added ${product.name} to cart`);
+  };
+
+  return <ProductDetails onAddToCart={handleAddToCart} product={product} />;
 };
