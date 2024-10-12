@@ -10,7 +10,7 @@ const buttonVariants = cva(
     "font-semibold",
     "text-2xl",
     "transition-transform",
-    "hover:scale-105",
+    "hover:enabled:scale-105",
   ],
   {
     variants: {
@@ -27,7 +27,8 @@ const buttonVariants = cva(
           "hover:scale-105",
         ],
         link: ["hover:underline"],
-        icon: ["leading-none"],
+        icon: ["leading-[0.5rem]"],
+        "icon-solid": ["leading-[0.5rem]", "rounded-full", "w-8", "h-8"],
       },
       color: {
         primary: [],
@@ -35,12 +36,13 @@ const buttonVariants = cva(
     },
     compoundVariants: [
       {
-        variant: "solid",
+        variant: ["solid", "icon-solid"],
         color: "primary",
         className: [
           "bg-primary",
           "text-primary-foreground",
-          "hover:bg-primary/90",
+          "hover:enabled:bg-primary/90",
+          "disabled:bg-slate-200",
         ],
       },
       {

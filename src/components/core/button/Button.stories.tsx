@@ -1,6 +1,6 @@
 import { Button } from "@/components/core/button/Button";
 import { Meta, StoryObj } from "@storybook/react";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 const meta = {
   component: Button,
@@ -34,6 +34,13 @@ export const Icon: ButtonStory = {
   args: {
     variant: "icon",
     icon: faCartShopping,
+  },
+};
+
+export const IconSolid: ButtonStory = {
+  args: {
+    variant: "icon-solid",
+    icon: faPlus,
   },
 };
 
