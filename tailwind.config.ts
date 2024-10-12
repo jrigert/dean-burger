@@ -15,6 +15,10 @@ const config: Config = {
           DEFAULT: "rgba(var(--color-primary), <alpha-value>)",
           foreground: "rgba(var(--color-primary-foreground), <alpha-value>)",
         },
+        danger: {
+          DEFAULT: "rgba(var(--color-danger), <alpha-value>)",
+          foreground: "rgba(var(--color-danger-foreground), <alpha-value>)",
+        },
       },
       scale: {
         "102": "1.02",

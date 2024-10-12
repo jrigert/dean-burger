@@ -32,6 +32,7 @@ const buttonVariants = cva(
       },
       color: {
         primary: [],
+        danger: [],
       },
     },
     compoundVariants: [
@@ -46,9 +47,24 @@ const buttonVariants = cva(
         ],
       },
       {
+        variant: ["solid", "icon-solid"],
+        color: "danger",
+        className: [
+          "bg-danger",
+          "text-danger-foreground",
+          "hover:enabled:bg-danger/90",
+          "disabled:bg-slate-200",
+        ],
+      },
+      {
         variant: ["link", "icon"],
         color: "primary",
         className: ["text-primary"],
+      },
+      {
+        variant: ["link", "icon"],
+        color: "danger",
+        className: ["text-danger"],
       },
     ],
     defaultVariants: {

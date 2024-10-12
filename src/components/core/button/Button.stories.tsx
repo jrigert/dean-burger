@@ -9,7 +9,11 @@ const meta = {
   argTypes: {
     variant: {
       control: { type: "radio" },
-      options: ["solid", "link"],
+      options: ["solid", "link", "icon", "icon-solid"],
+    },
+    color: {
+      control: { type: "radio" },
+      options: ["primary", "danger"],
     },
   },
 } satisfies Meta<typeof Button>;
@@ -20,6 +24,13 @@ type ButtonStory = StoryObj<typeof meta>;
 export const SolidPrimary: ButtonStory = {
   args: {
     children: "Click Me!",
+  },
+};
+
+export const SolidDanger: ButtonStory = {
+  args: {
+    children: "Careful!",
+    color: "danger",
   },
 };
 

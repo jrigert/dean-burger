@@ -6,11 +6,14 @@
   --color-white: 242, 242, 242;
   --color-black: 23, 23, 23;
   --color-orange: 251, 122, 43;
+  --color-red: 203, 54, 20;
 
   --color-background: var(--color-white);
   --color-foreground: var(--color-black);
   --color-primary: var(--color-orange);
   --color-primary-foreground: var(--color-foreground);
+  --color-danger: var(--color-red);
+  --color-danger-foreground: var(--color-white);
 }
 
 @media (prefers-color-scheme: dark) {

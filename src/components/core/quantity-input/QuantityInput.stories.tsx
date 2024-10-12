@@ -32,6 +32,15 @@ export const Default: QuantityInputStory = {
   },
 };
 
+export const Small: QuantityInputStory = {
+  args: {
+    value: 1,
+    onChange: fn(),
+    max: 10,
+    size: "sm",
+  },
+};
+
 export const CustomMinMax: QuantityInputStory = {
   args: {
     value: 5,

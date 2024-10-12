@@ -1,4 +1,5 @@
 import { Product } from "@/types/product";
+import { findItemBySlug } from "@/utils/array";
 
 interface GetProductsResponse {
   products: Product[];
@@ -18,5 +19,5 @@ export const getProductBySlug = async (
   slug: string,
 ): Promise<Product | undefined> => {
   const products = await getProducts();
-  return products.find((product) => product.slug === slug);
+  return findItemBySlug(products, slug);
 };
