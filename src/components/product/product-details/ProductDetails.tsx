@@ -1,11 +1,14 @@
+"use client";
+
 import { BackButton } from "@/components/core/back-button/BackButton";
 import { Button } from "@/components/core/button/Button";
 import { Container } from "@/components/core/container/Container";
 import { Heading } from "@/components/core/heading/Heading";
 import { Price } from "@/components/core/price/Price";
+import { QuantityInput } from "@/components/core/quantity-input/QuantityInput";
 import { Product } from "@/types/product";
 import Image from "next/image";
-import type { FunctionComponent } from "react";
+import { FunctionComponent, useState } from "react";
 
 export interface ProductDetailsProps {
   product: Product;
@@ -16,6 +19,8 @@ export const ProductDetails: FunctionComponent<ProductDetailsProps> = (
 ) => {
   const { product } = props;
   const { calorie, description, image, price, name } = product;
+
+  const [quantity, setQuantity] = useState(1);
 
   return (
     <Container
@@ -49,7 +54,15 @@ export const ProductDetails: FunctionComponent<ProductDetailsProps> = (
 
         <p className="mt-4 text-sm font-semibold">{calorie} Calories</p>
 
-        <Button className="mt-12">Add To Cart</Button>
+        <div className="mt-12 flex items-center gap-10">
+          <Button>Add To Cart</Button>
+
+          <QuantityInput
+            accessibilityItemName={name}
+            onChange={setQuantity}
+            value={quantity}
+          />
+        </div>
       </div>
     </Container>
   );
