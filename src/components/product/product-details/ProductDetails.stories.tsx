@@ -1,6 +1,7 @@
 import { ProductDetails } from "@/components/product/product-details/ProductDetails";
-import { MOCK_PRODUCT } from "@/data/mocks/product";
+import { MOCK_PRODUCT } from "@/constants/mocks/product";
 import { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 
 const meta = {
   component: ProductDetails,
@@ -13,6 +14,7 @@ type ProductDetailsStory = StoryObj<typeof meta>;
 
 export const Default: ProductDetailsStory = {
   args: {
+    onAddToCart: fn(),
     product: MOCK_PRODUCT,
   },
 };

@@ -9,8 +9,6 @@ datasource db {
 
 model orders {
   id          Int           @id @default(autoincrement())
-  total       Decimal       @db.Decimal
-  item_count  Int
   order_items order_items[]
 }
 
@@ -20,4 +18,7 @@ model order_items {
   product_id String @db.VarChar(10)
   quantity   Int
   orders     orders @relation(fields: [order_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([order_id, product_id], map: "unique_order_product")
+  @@unique([order_id, product_id], map: "unique_order_product_index")
 }

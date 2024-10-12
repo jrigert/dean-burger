@@ -1,5 +1,5 @@
 import { ProductList } from "@/components/product/product-list/ProductList";
-import { MOCK_PRODUCTS } from "@/data/mocks/product";
+import { MOCK_PRODUCTS } from "@/constants/mocks/product";
 import { Meta, StoryObj } from "@storybook/react";
 
 const meta = {

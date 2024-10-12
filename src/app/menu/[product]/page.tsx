@@ -1,5 +1,5 @@
 import { getProductBySlug } from "@/api/products";
-import { ProductDetails } from "@/components/product/product-details/ProductDetails";
+import { ProductDetailsController } from "@/controllers/product/product-details/ProductDetailsController";
 import { NextPage } from "next";
 
 interface ProductDetailsPageProps {
@@ -19,7 +19,7 @@ const ProductDetailsPage: NextPage<ProductDetailsPageProps> = async (props) => {
 
   return (
     <div className="flex items-center justify-center pt-14 md:min-h-screen">
-      <ProductDetails product={product} />
+      <ProductDetailsController product={product} />
     </div>
   );
 };

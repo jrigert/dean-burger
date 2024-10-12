@@ -1,5 +1,5 @@
 import { CartItem } from "@/components/cart/cart-item/CartItem";
-import { MOCK_PRODUCT } from "@/data/mocks/product";
+import { MOCK_PRODUCT } from "@/constants/mocks/product";
 import { Meta, StoryObj } from "@storybook/react";
 
 const meta = {

@@ -11,13 +11,14 @@ import Image from "next/image";
 import { FunctionComponent, useState } from "react";
 
 export interface ProductDetailsProps {
+  onAddToCart: (product: Product, quantity: number) => void;
   product: Product;
 }
 
 export const ProductDetails: FunctionComponent<ProductDetailsProps> = (
   props,
 ) => {
-  const { product } = props;
+  const { onAddToCart, product } = props;
   const { calorie, description, image, price, name } = product;
 
   const [quantity, setQuantity] = useState(1);
@@ -56,7 +57,9 @@ export const ProductDetails: FunctionComponent<ProductDetailsProps> = (
         <p className="mt-4 text-sm font-semibold">{calorie} Calories</p>
 
         <div className="mt-8 flex items-center gap-10 sm:mt-12">
-          <Button>Add To Cart</Button>
+          <Button onClick={() => onAddToCart(product, quantity)}>
+            Add To Cart
+          </Button>
 
           <QuantityInput
             accessibilityItemName={name}

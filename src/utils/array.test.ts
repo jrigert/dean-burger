@@ -1,4 +1,4 @@
-import { MOCK_PRODUCTS } from "@/data/mocks/product";
+import { MOCK_PRODUCTS } from "@/constants/mocks/product";
 import { findItemById, findItemBySlug, isDefined } from "@/utils/array";
 import { describe, expect, test } from "vitest";
 
