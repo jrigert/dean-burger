@@ -1,4 +1,4 @@
-import { OrderItem } from "@/types/cart";
+import { OrderItem } from "@/types/order";
 import { Product } from "@/types/product";
 import { findItemById, isDefined } from "@/utils/array";
 import { useMemo } from "react";
@@ -22,7 +22,7 @@ export const useCart = (props: UseCartProps): Cart => {
   return useMemo(() => {
     const productOrderItemsUnfiltered: (ProductOrderItem | undefined)[] =
       orderItems.map((orderItem) => {
-        const product = findItemById(products, orderItem.productId);
+        const product = findItemById(products, orderItem.product_id);
         if (!product) {
           return;
         }

@@ -1,6 +1,6 @@
 import { CartItem } from "@/components/cart/cart-item/CartItem";
 import { useCart } from "@/hooks/useCart";
-import { OrderItem } from "@/types/cart";
+import { OrderItem } from "@/types/order";
 import { Product } from "@/types/product";
 import type { FunctionComponent } from "react";
 

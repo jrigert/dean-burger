@@ -1,4 +1,4 @@
-import { OrderItem } from "@/types/cart";
+import { OrderItem } from "@/types/order";
 import { Product } from "@/types/product";
 
 export const MOCK_PRODUCTS: Product[] = [
@@ -38,15 +38,21 @@ export const MOCK_PRODUCT: Product = MOCK_PRODUCTS[0];
 
 export const MOCK_ORDER_ITEMS: OrderItem[] = [
   {
-    productId: "2",
+    id: 1,
+    order_id: 1,
+    product_id: "2",
     quantity: 1,
   },
   {
-    productId: "3",
+    id: 2,
+    order_id: 1,
+    product_id: "3",
     quantity: 2,
   },
   {
-    productId: "1",
+    id: 3,
+    order_id: 1,
+    product_id: "1",
     quantity: 1,
   },
 ] as const;
