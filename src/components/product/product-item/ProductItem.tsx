@@ -27,7 +27,7 @@ export const ProductItem: FunctionComponent<ProductItemProps> = (props) => {
           alt=""
           fill
           className="object-cover"
-          sizes={"(max-width: 639px) 400px, 250px"}
+          sizes={"(max-width: 639px) 300px, 250px"}
         />
       </div>
 

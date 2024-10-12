@@ -24,37 +24,38 @@ export const ProductDetails: FunctionComponent<ProductDetailsProps> = (
 
   return (
     <Container
-      className="flex flex-col items-center justify-center md:flex-row"
+      className="flex flex-col items-center justify-center pb-6 sm:pb-0 md:flex-row"
       fullBleedMobile
     >
       <div className="flex w-full flex-col-reverse sm:mt-6 md:-mt-6 md:w-auto md:flex-col">
-        <div className="mt-4 px-6 md:mt-4 md:px-0">
+        <div className="mt-2 px-6 sm:mt-4 md:mt-4 md:px-0">
           <BackButton text="Back" />
         </div>
 
-        <div className="relative h-[300px] w-full overflow-hidden md:h-[300px] md:w-[300px] lg:h-[500px] lg:w-[500px]">
+        <div className="relative h-[225px] w-full overflow-hidden sm:h-[300px] md:w-[300px] lg:h-[500px] lg:w-[500px]">
           <Image
             src={image}
             alt=""
             fill
             className="object-cover sm:rounded-xl"
             sizes={"(max-width: 1023px) 300px, 500px"}
+            priority
           />
         </div>
       </div>
 
-      <div className="px-6 pt-4 md:max-w-[500px] md:px-12">
+      <div className="px-6 pt-1 sm:pt-4 md:max-w-[500px] md:px-12">
         <Heading tag="h1">{name}</Heading>
 
         <strong className="font-teko text-3xl text-slate-600">
           <Price price={price} />
         </strong>
 
-        <p className="mt-5 text-left">{description}</p>
+        <p className="mt-3 text-left sm:mt-5">{description}</p>
 
         <p className="mt-4 text-sm font-semibold">{calorie} Calories</p>
 
-        <div className="mt-12 flex items-center gap-10">
+        <div className="mt-8 flex items-center gap-10 sm:mt-12">
           <Button>Add To Cart</Button>
 
           <QuantityInput
