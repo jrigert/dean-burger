@@ -1,5 +1,8 @@
 import { Cart } from "@/components/cart/cart/Cart";
-import { MOCK_ORDER_ITEMS, MOCK_PRODUCTS } from "@/constants/mocks/product";
+import {
+  MOCK_ORDER_WITH_ITEMS,
+  MOCK_PRODUCTS,
+} from "@/constants/mocks/product";
 import { Meta, StoryObj } from "@storybook/react";
 
 const meta = {
@@ -20,7 +23,7 @@ type CartStory = StoryObj<typeof meta>;
 
 export const Default: CartStory = {
   args: {
-    orderItems: MOCK_ORDER_ITEMS,
+    order: MOCK_ORDER_WITH_ITEMS,
     products: MOCK_PRODUCTS,
   },
 };

@@ -1,7 +1,7 @@
 import { Badge } from "@/components/core/badge/Badge";
-import { Button } from "@/components/core/button/Button";
 import { classNames } from "@/utils/style";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import type { FunctionComponent } from "react";
 
@@ -29,7 +29,16 @@ export const Header: FunctionComponent<HeaderProps> = (props) => {
         </Link>
 
         <div className="relative">
-          <Button variant="icon" icon={faShoppingCart} aria-label="Cart" />
+          <Link
+            href="/cart"
+            aria-label="Go To Cart"
+            className="text-2xl text-primary"
+          >
+            <FontAwesomeIcon
+              icon={faShoppingCart}
+              className="transition-transform hover:scale-110"
+            />
+          </Link>
 
           {orderCount ? (
             <Badge

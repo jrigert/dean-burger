@@ -1,28 +1,44 @@
 import { CartItem } from "@/components/cart/cart-item/CartItem";
+import { Container } from "@/components/core/container/Container";
+import { Heading } from "@/components/core/heading/Heading";
 import { useCart } from "@/hooks/useCart";
-import { OrderItem } from "@/types/order";
+import { OrderWithItems } from "@/types/order";
 import { Product } from "@/types/product";
 import type { FunctionComponent } from "react";
 
 export interface CartProps {
-  orderItems: OrderItem[];
+  order: OrderWithItems | null;
   products: Product[];
 }
 
 export const Cart: FunctionComponent<CartProps> = (props) => {
-  const { orderItems, products } = props;
+  const { order, products } = props;
 
-  const { productOrderItems } = useCart({ products, orderItems });
+  const { productOrderItems } = useCart({
+    products,
+    orderItems: order?.order_items ?? [],
+  });
+
+  const hasItems = productOrderItems.length;
 
   return (
-    <section>
-      <ul>
-        {productOrderItems.map((product) => (
-          <li key={product.id}>
-            <CartItem product={product} />
-          </li>
-        ))}
-      </ul>
-    </section>
+    <Container tag="section" className="max-w-screen-md pb-10 pt-24">
+      <Heading tag="h1" className="mb-10">
+        Your Order
+      </Heading>
+
+      {/* TODO - better messaging here, add variant in storybook */}
+      {hasItems ? (
+        <ul>
+          {productOrderItems.map((product) => (
+            <li key={product.id}>
+              <CartItem product={product} />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No items...</p>
+      )}
+    </Container>
   );
 };

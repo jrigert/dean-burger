@@ -21,7 +21,7 @@ export const CartItem: FunctionComponent<CartItemProps> = (props) => {
   const totalPrice = price * quantity;
 
   return (
-    <div className="flex justify-between border-y border-slate-200 py-3 align-middle">
+    <div className="flex justify-between border-y border-slate-200 py-4 align-middle">
       <div className="flex items-center gap-4">
         <Image
           src={image}
