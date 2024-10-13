@@ -1,6 +1,6 @@
 import { Badge } from "@/components/core/badge/Badge";
-import { SearchInput } from "@/components/core/search-input/SearchInput";
 import { Routes } from "@/constants/routes";
+import { ProductSearchController } from "@/controllers/product/product-search/ProductSearchController";
 import { classNames } from "@/utils/style";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -31,11 +31,7 @@ export const Header: FunctionComponent<HeaderProps> = (props) => {
             Dean Burger
           </Link>
 
-          <SearchInput
-            placeholder="Search the menu..."
-            id="search-menu"
-            label="Search the menu"
-          />
+          <ProductSearchController />
         </div>
 
         <div className="relative">
