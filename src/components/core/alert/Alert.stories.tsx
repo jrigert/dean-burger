@@ -20,9 +20,9 @@ const meta = {
 
     return (
       <div>
-        <Alert className={"relative top-0"} {...args} />
+        <Alert className={"absolute left-0 top-0"} {...args} />
 
-        <div className="mt-6 flex gap-6">
+        <div className="mt-12 flex gap-6">
           <Button
             onClick={() =>
               setAlert({ message: "This is a success alert", type: "success" })

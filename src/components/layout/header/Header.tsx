@@ -16,7 +16,7 @@ export const Header: FunctionComponent<HeaderProps> = (props) => {
   return (
     <header
       className={classNames(
-        "fixed left-0 top-0 z-10 h-14 w-full items-center bg-background shadow-xl",
+        "fixed left-0 top-0 z-20 h-14 w-full items-center bg-background shadow-xl",
         className,
       )}
     >
