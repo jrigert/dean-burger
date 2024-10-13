@@ -52,7 +52,7 @@ export const CartItem: FunctionComponent<CartItemProps> = (props) => {
     <div className="relative">
       <div
         className={classNames(
-          "flex justify-between gap-6 border-y border-slate-200 py-4 align-middle",
+          "flex justify-between gap-6 border-y border-slate-300 py-4 align-middle",
           isBusy && "opacity-50",
         )}
       >
