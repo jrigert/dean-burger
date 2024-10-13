@@ -1,4 +1,5 @@
-import { PageController } from "@/controllers/page/PageController";
+import { getUserOrder } from "@/api/orders";
+import { PageTemplate } from "@/components/layout/page-template/PageTemplate";
 import { AlertProvider } from "@/providers/AlertProvider";
 import { baseStyles } from "@/styles";
 import { classNames } from "@/utils/style";
@@ -16,16 +17,18 @@ export const metadata: Metadata = {
   description: "The best burgers in town!",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: ReactNode;
 }>) {
+  const order = await getUserOrder();
+
   return (
     <html lang="en">
       <body className={classNames(baseStyles, "bg-background")}>
         <AlertProvider>
-          <PageController>{children}</PageController>
+          <PageTemplate order={order}>{children}</PageTemplate>
         </AlertProvider>
       </body>
     </html>

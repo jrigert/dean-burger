@@ -3,6 +3,7 @@ import { ORDER_ID_COOKIE_KEY } from "@/constants/cookies";
 import { OrderWithItems } from "@/types/order";
 import type { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 import { cookies } from "next/headers";
+import { cache } from "react";
 
 export const getOrderIdCookie = (
   existingCookieStore?: ReadonlyRequestCookies,
@@ -26,7 +27,7 @@ export const getOrderById = async (
     include: { order_items: { orderBy: { id: "asc" } } },
   });
 
-export const getUserOrder = async (): Promise<OrderWithItems | null> => {
+const getUserOrder_uncached = async (): Promise<OrderWithItems | null> => {
   const orderId = getOrderIdCookie();
   if (!orderId) {
     return null;
@@ -34,3 +35,5 @@ export const getUserOrder = async (): Promise<OrderWithItems | null> => {
 
   return getOrderById(orderId);
 };
+
+export const getUserOrder = cache(getUserOrder_uncached);
