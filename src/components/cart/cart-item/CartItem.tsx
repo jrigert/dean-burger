@@ -28,18 +28,22 @@ export const CartItem: FunctionComponent<CartItemProps> = (props) => {
   const totalPrice = price * quantity;
 
   return (
-    <div className="flex justify-between border-y border-slate-200 py-4 align-middle">
+    <div className="flex justify-between gap-6 border-y border-slate-200 py-4 align-middle">
       <div className="flex items-center gap-4">
         <Image
           src={image}
           alt=""
           width={100}
           height={100}
-          className="h-[100px] w-[100px] rounded-xl object-cover"
+          className="h-[80px] w-[80px] rounded-xl object-cover sm:h-[100px] sm:w-[100px]"
         />
 
         <div>
-          <Heading tag="h2" tagStyle="h3">
+          <Heading
+            tag="h2"
+            tagStyle="h3"
+            className="max-sm:text-xl max-sm:leading-5"
+          >
             {name}
           </Heading>
 
@@ -52,7 +56,7 @@ export const CartItem: FunctionComponent<CartItemProps> = (props) => {
         </div>
       </div>
 
-      <div className="flex flex-col items-end justify-center">
+      <div className="flex flex-col items-end justify-center gap-2">
         <strong className="font-teko text-2xl text-slate-600">
           <Price price={totalPrice} />
         </strong>

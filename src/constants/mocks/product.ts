@@ -63,3 +63,8 @@ export const MOCK_ORDER_WITH_ITEMS: OrderWithItems = {
   id: 1,
   order_items: MOCK_ORDER_ITEMS,
 } as const;
+
+export const MOCK_ORDER_WITH_ITEMS_EMPTY: OrderWithItems = {
+  id: 1,
+  order_items: [],
+} as const;

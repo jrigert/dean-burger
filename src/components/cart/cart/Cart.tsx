@@ -3,10 +3,13 @@
 import { CartItem } from "@/components/cart/cart-item/CartItem";
 import { Container } from "@/components/core/container/Container";
 import { Heading } from "@/components/core/heading/Heading";
+import { Link } from "@/components/core/link/Link";
 import { useCart } from "@/hooks/useCart";
 import { OrderWithItems } from "@/types/order";
 import { Product } from "@/types/product";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { FunctionComponent } from "react";
+import { faFaceFrownOpen } from "@fortawesome/free-solid-svg-icons";
 
 export interface CartProps {
   onDeleteOrderItem: (orderItemId: number) => void;
@@ -26,13 +29,11 @@ export const Cart: FunctionComponent<CartProps> = (props) => {
 
   return (
     <Container tag="section" className="max-w-screen-md pb-10 pt-24">
-      <Heading tag="h1" className="mb-10">
-        Your Order
-      </Heading>
+      <Heading tag="h1">Your Order</Heading>
 
       {/* TODO - better messaging here, add variant in storybook */}
       {hasItems ? (
-        <ul>
+        <ul className="mt-10">
           {productOrderItems.map((product) => (
             <li key={product.id}>
               <CartItem
@@ -43,7 +44,15 @@ export const Cart: FunctionComponent<CartProps> = (props) => {
           ))}
         </ul>
       ) : (
-        <p>No items...</p>
+        <div>
+          <p className="mt-4 text-2xl font-semibold">
+            Your cart is empty <FontAwesomeIcon icon={faFaceFrownOpen} />
+          </p>
+
+          <div className="mt-12 text-xl">
+            <Link href={"/"}>Head back to the menu</Link> to order something!
+          </div>
+        </div>
       )}
     </Container>
   );
