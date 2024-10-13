@@ -8,6 +8,7 @@ export interface Cart {
 }
 
 export interface ProductOrderItem extends Product {
+  orderItemId: number;
   quantity: number;
 }
 
@@ -30,6 +31,7 @@ export const useCart = (props: UseCartProps): Cart => {
         return {
           ...product,
           quantity: orderItem.quantity,
+          orderItemId: orderItem.id,
         };
       });
 

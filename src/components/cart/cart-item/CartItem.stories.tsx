@@ -1,6 +1,7 @@
 import { CartItem } from "@/components/cart/cart-item/CartItem";
 import { MOCK_PRODUCT } from "@/constants/mocks/product";
 import { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 
 const meta = {
   component: CartItem,
@@ -18,9 +19,11 @@ type CartItemStory = StoryObj<typeof meta>;
 
 export const Default: CartItemStory = {
   args: {
-    product: {
+    onDelete: fn(),
+    productOrderItem: {
       ...MOCK_PRODUCT,
       quantity: 1,
+      orderItemId: 1,
     },
   },
 };

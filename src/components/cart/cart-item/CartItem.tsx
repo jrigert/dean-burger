@@ -10,12 +10,19 @@ import Image from "next/image";
 import { FunctionComponent, useState } from "react";
 
 export interface CartItemProps {
-  product: ProductOrderItem;
+  onDelete: (orderItemId: number) => void;
+  productOrderItem: ProductOrderItem;
 }
 
 export const CartItem: FunctionComponent<CartItemProps> = (props) => {
-  const { product } = props;
-  const { image, name, price, quantity: originalQuantity } = product;
+  const { productOrderItem, onDelete } = props;
+  const {
+    image,
+    name,
+    price,
+    quantity: originalQuantity,
+    orderItemId,
+  } = productOrderItem;
 
   const [quantity, setQuantity] = useState(originalQuantity);
   const totalPrice = price * quantity;
@@ -54,7 +61,8 @@ export const CartItem: FunctionComponent<CartItemProps> = (props) => {
           variant="icon"
           color="danger"
           icon={faTrash}
-          aria-label={`Remove ${name}`}
+          aria-label={`Remove ${name} from your order`}
+          onClick={() => onDelete(orderItemId)}
         />
       </div>
     </div>

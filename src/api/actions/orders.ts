@@ -3,6 +3,8 @@
 import prisma from "@/api/db";
 import { getOrderIdCookie } from "@/api/orders";
 import { ORDER_ID_COOKIE_KEY } from "@/constants/cookies";
+import { Routes } from "@/constants/routes";
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -55,4 +57,15 @@ export const addItemToOrder = async (payload: AddItemToOrderPayload) => {
   }
 
   redirect("/");
+};
+
+export interface DeleteOrderItemPayload {
+  id: number;
+}
+
+export const deleteOrderItem = async (payload: DeleteOrderItemPayload) => {
+  const { id } = payload;
+  await prisma.order_items.delete({ where: { id } });
+
+  revalidatePath(`/${Routes.Cart}`);
 };

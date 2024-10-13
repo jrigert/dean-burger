@@ -1,3 +1,5 @@
+"use client";
+
 import { CartItem } from "@/components/cart/cart-item/CartItem";
 import { Container } from "@/components/core/container/Container";
 import { Heading } from "@/components/core/heading/Heading";
@@ -7,12 +9,13 @@ import { Product } from "@/types/product";
 import type { FunctionComponent } from "react";
 
 export interface CartProps {
+  onDeleteOrderItem: (orderItemId: number) => void;
   order: OrderWithItems | null;
   products: Product[];
 }
 
 export const Cart: FunctionComponent<CartProps> = (props) => {
-  const { order, products } = props;
+  const { order, onDeleteOrderItem, products } = props;
 
   const { productOrderItems } = useCart({
     products,
@@ -32,7 +35,10 @@ export const Cart: FunctionComponent<CartProps> = (props) => {
         <ul>
           {productOrderItems.map((product) => (
             <li key={product.id}>
-              <CartItem product={product} />
+              <CartItem
+                productOrderItem={product}
+                onDelete={onDeleteOrderItem}
+              />
             </li>
           ))}
         </ul>

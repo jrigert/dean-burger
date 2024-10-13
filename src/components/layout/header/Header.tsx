@@ -1,4 +1,5 @@
 import { Badge } from "@/components/core/badge/Badge";
+import { Routes } from "@/constants/routes";
 import { classNames } from "@/utils/style";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -30,7 +31,7 @@ export const Header: FunctionComponent<HeaderProps> = (props) => {
 
         <div className="relative">
           <Link
-            href="/cart"
+            href={`/${Routes.Cart}`}
             aria-label="Go To Cart"
             className="text-2xl text-primary"
           >
