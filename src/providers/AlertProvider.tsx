@@ -4,25 +4,37 @@ import {
   createContext,
   FunctionComponent,
   PropsWithChildren,
+  useCallback,
   useMemo,
   useState,
 } from "react";
 
-interface AlertContextValue {
+export interface Alert {
   message: string;
-  setMessage: (message: string) => void;
+  type: "success" | "danger";
 }
 
-export const AlertContext = createContext<AlertContextValue>({
-  message: "",
-  setMessage: () => {},
-});
+interface AlertContextValue {
+  alert: Alert | null;
+  clearAlert: () => void;
+  setAlert: (alert: Alert) => void;
+}
+
+export const AlertContext = createContext<AlertContextValue | null>(null);
 
 export const AlertProvider: FunctionComponent<PropsWithChildren> = ({
   children,
 }) => {
-  const [message, setMessage] = useState<string>("");
-  const contextValue = useMemo(() => ({ message, setMessage }), [message]);
+  const [alert, setAlert] = useState<Alert | null>(null);
+
+  const clearAlert = useCallback(() => {
+    setAlert(null);
+  }, []);
+
+  const contextValue = useMemo(
+    () => ({ alert, clearAlert, setAlert }),
+    [alert, clearAlert],
+  );
 
   return (
     <AlertContext.Provider value={contextValue}>

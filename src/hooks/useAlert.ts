@@ -4,5 +4,11 @@ import { AlertContext } from "@/providers/AlertProvider";
 import { useContext } from "react";
 
 export const useAlert = () => {
-  return useContext(AlertContext);
+  const alertContext = useContext(AlertContext);
+
+  if (!alertContext) {
+    throw new Error("useAlert required a parent AlertProvider");
+  }
+
+  return alertContext;
 };

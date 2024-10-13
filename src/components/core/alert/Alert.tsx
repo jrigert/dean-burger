@@ -1,21 +1,27 @@
 "use client";
 
 import { useAlert } from "@/hooks/useAlert";
+import { classNames } from "@/utils/style";
 import { FunctionComponent, useEffect } from "react";
 
 type Timeout = ReturnType<typeof setTimeout>;
 
 const TIMEOUT_DURATION = 4000;
 
-export const Alert: FunctionComponent = () => {
-  const { message, setMessage } = useAlert();
+export interface AlertProps {
+  className?: string;
+}
+
+export const Alert: FunctionComponent<AlertProps> = (props) => {
+  const { className } = props;
+  const { alert, clearAlert } = useAlert();
 
   useEffect(() => {
     let timeout: Timeout;
 
-    if (message) {
-      setTimeout(() => {
-        setMessage("");
+    if (alert) {
+      timeout = setTimeout(() => {
+        clearAlert();
       }, TIMEOUT_DURATION);
     }
 
@@ -24,14 +30,24 @@ export const Alert: FunctionComponent = () => {
         clearTimeout(timeout);
       }
     };
-  }, [message, setMessage]);
+  }, [alert, clearAlert]);
 
-  if (!message) {
+  if (!alert) {
     return null;
   }
 
+  const { message, type } = alert;
+
   return (
-    <div className="bg-success fixed right-0 top-14 z-10 w-full rounded-b-xl px-6 py-3 font-semibold sm:w-auto">
+    <div
+      className={classNames(
+        "fixed right-0 top-14 z-10 w-full rounded-b-xl px-6 py-3 font-teko text-xl font-semibold sm:w-auto",
+        type === "danger"
+          ? "bg-danger text-danger-foreground"
+          : "bg-success text-success-foreground",
+        className,
+      )}
+    >
       {message}
     </div>
   );

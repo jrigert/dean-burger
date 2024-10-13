@@ -14,7 +14,7 @@ export const ProductDetailsController: FunctionComponent<
   ProductDetailsControllerProps
 > = (props) => {
   const { product } = props;
-  const { setMessage } = useAlert();
+  const { setAlert } = useAlert();
 
   const handleAddToCart = async (product: Product, quantity: number) => {
     await addItemToOrder({
@@ -22,7 +22,7 @@ export const ProductDetailsController: FunctionComponent<
       quantity,
     });
 
-    setMessage(`Added ${product.name} to cart`);
+    setAlert({ message: `Added ${product.name} to cart`, type: "success" });
   };
 
   return <ProductDetails onAddToCart={handleAddToCart} product={product} />;

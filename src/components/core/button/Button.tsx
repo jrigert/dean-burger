@@ -21,7 +21,6 @@ const buttonVariants = cva(
           "py-2",
           "text-2xl",
           "font-semibold",
-          "uppercase",
           "tracking-wide",
           "transition-transform",
           "hover:scale-105",
