@@ -1,4 +1,5 @@
 import { Badge } from "@/components/core/badge/Badge";
+import { SearchInput } from "@/components/core/search-input/SearchInput";
 import { Routes } from "@/constants/routes";
 import { classNames } from "@/utils/style";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
@@ -22,12 +23,20 @@ export const Header: FunctionComponent<HeaderProps> = (props) => {
       )}
     >
       <div className="flex h-full items-center justify-between px-6">
-        <Link
-          href="/"
-          className="font-teko text-3xl font-bold tracking-wider text-primary hover:underline"
-        >
-          Dean Burger
-        </Link>
+        <div className="flex items-center gap-6">
+          <Link
+            href="/"
+            className="font-teko text-3xl font-bold tracking-wider text-primary hover:underline"
+          >
+            Dean Burger
+          </Link>
+
+          <SearchInput
+            placeholder="Search the menu..."
+            id="search-menu"
+            label="Search the menu"
+          />
+        </div>
 
         <div className="relative">
           <Link

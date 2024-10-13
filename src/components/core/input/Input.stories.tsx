@@ -11,5 +11,18 @@ export default meta;
 type InputStory = StoryObj<typeof meta>;
 
 export const Default: InputStory = {
-  args: {},
+  args: {
+    id: "first-name",
+    label: "First Name",
+    placeholder: "Enter First Name",
+  },
+};
+
+export const HiddenLabel: InputStory = {
+  args: {
+    id: "first-name",
+    label: "First Name",
+    placeholder: "Enter First Name",
+    labelVisible: false,
+  },
 };
