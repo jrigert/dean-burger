@@ -98,7 +98,7 @@ export const CartItem: FunctionComponent<CartItemProps> = (props) => {
         </div>
       </div>
       {isBusy ? (
-        <div className="absolute -left-4 top-0 flex h-full w-[105%] items-center justify-center bg-slate-500/20">
+        <div className="absolute -left-4 top-0 flex h-full w-[107%] items-center justify-center bg-slate-500/20 sm:w-[105%]">
           <Spinner className="text-4xl text-primary" />
         </div>
       ) : null}
