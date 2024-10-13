@@ -11,6 +11,7 @@ import Image from "next/image";
 import { FunctionComponent, useState } from "react";
 
 export interface ProductDetailsProps {
+  isLoading: boolean;
   onAddToCart: (product: Product, quantity: number) => void;
   product: Product;
 }
@@ -18,7 +19,7 @@ export interface ProductDetailsProps {
 export const ProductDetails: FunctionComponent<ProductDetailsProps> = (
   props,
 ) => {
-  const { onAddToCart, product } = props;
+  const { isLoading, onAddToCart, product } = props;
   const { calorie, description, image, price, name } = product;
 
   const [quantity, setQuantity] = useState(1);
@@ -57,7 +58,10 @@ export const ProductDetails: FunctionComponent<ProductDetailsProps> = (
         <p className="mt-4 text-sm font-semibold">{calorie} Calories</p>
 
         <div className="mt-8 flex items-center gap-10 sm:mt-12">
-          <Button onClick={() => onAddToCart(product, quantity)}>
+          <Button
+            onClick={() => onAddToCart(product, quantity)}
+            isLoading={isLoading}
+          >
             Add To Cart
           </Button>
 

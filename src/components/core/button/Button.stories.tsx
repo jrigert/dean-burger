@@ -34,6 +34,13 @@ export const SolidDanger: ButtonStory = {
   },
 };
 
+export const Loading: ButtonStory = {
+  args: {
+    children: "Click Me!",
+    isLoading: true,
+  },
+};
+
 export const Link: ButtonStory = {
   args: {
     children: "Click Me!",

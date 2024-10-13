@@ -1,5 +1,6 @@
 import { classNames } from "@/utils/style";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { cva, VariantProps } from "class-variance-authority";
 import { type ComponentProps, type FunctionComponent, useMemo } from "react";
@@ -11,6 +12,7 @@ const buttonVariants = cva(
     "text-2xl",
     "transition-transform",
     "hover:enabled:scale-105",
+    "relative",
   ],
   {
     variants: {
@@ -23,7 +25,7 @@ const buttonVariants = cva(
           "font-semibold",
           "tracking-wide",
           "transition-transform",
-          "hover:scale-105",
+          "hover:enabled:scale-105",
         ],
         link: ["hover:underline"],
         icon: ["leading-[0.5rem]"],
@@ -42,7 +44,6 @@ const buttonVariants = cva(
           "bg-primary",
           "text-primary-foreground",
           "hover:enabled:bg-primary/90",
-          "disabled:bg-slate-200",
         ],
       },
       {
@@ -52,7 +53,6 @@ const buttonVariants = cva(
           "bg-danger",
           "text-danger-foreground",
           "hover:enabled:bg-danger/90",
-          "disabled:bg-slate-200",
         ],
       },
       {
@@ -78,10 +78,20 @@ export type ButtonVariantProps = VariantProps<typeof buttonVariants>;
 export type ButtonProps = Omit<ComponentProps<"button">, "color"> &
   ButtonVariantProps & {
     icon?: IconDefinition;
+    isLoading?: boolean;
   };
 
 export const Button: FunctionComponent<ButtonProps> = (props) => {
-  const { children, className, variant, color, icon, ...buttonProps } = props;
+  const {
+    children,
+    className,
+    disabled,
+    isLoading,
+    variant,
+    color,
+    icon,
+    ...buttonProps
+  } = props;
 
   const combinedClassNames = useMemo(() => {
     const headingClassNames = buttonVariants({ variant, color });
@@ -89,9 +99,19 @@ export const Button: FunctionComponent<ButtonProps> = (props) => {
   }, [className, variant, color]);
 
   return (
-    <button className={combinedClassNames} {...buttonProps}>
+    <button
+      className={combinedClassNames}
+      disabled={disabled || isLoading}
+      {...buttonProps}
+    >
       {icon ? <FontAwesomeIcon icon={icon} /> : null}
-      {children}
+      {isLoading ? (
+        <FontAwesomeIcon
+          icon={faSpinner}
+          className="absolute bottom-0 left-0 right-0 top-0 m-auto animate-spin"
+        />
+      ) : null}
+      <span className={classNames({ invisible: isLoading })}>{children}</span>
     </button>
   );
 };

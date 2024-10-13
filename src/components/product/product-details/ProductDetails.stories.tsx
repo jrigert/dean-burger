@@ -14,6 +14,15 @@ type ProductDetailsStory = StoryObj<typeof meta>;
 
 export const Default: ProductDetailsStory = {
   args: {
+    isLoading: false,
+    onAddToCart: fn(),
+    product: MOCK_PRODUCT,
+  },
+};
+
+export const Loading: ProductDetailsStory = {
+  args: {
+    isLoading: true,
     onAddToCart: fn(),
     product: MOCK_PRODUCT,
   },
