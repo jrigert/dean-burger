@@ -5,13 +5,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { ComponentProps, FunctionComponent } from "react";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-export type SearchInputProps = Omit<
-  ComponentProps<typeof Input>,
-  "labelVisible"
->;
+export interface SearchInputProps
+  extends Omit<ComponentProps<typeof Input>, "labelVisible"> {
+  inputContainerClassName?: string;
+  inputClassName?: string;
+}
 
 export const SearchInput: FunctionComponent<SearchInputProps> = (props) => {
-  const { className, ...inputProps } = props;
+  const { className, inputClassName, inputContainerClassName, ...inputProps } =
+    props;
 
   return (
     <div className={classNames("relative flex items-center", className)}>
@@ -23,7 +25,11 @@ export const SearchInput: FunctionComponent<SearchInputProps> = (props) => {
         <FontAwesomeIcon icon={faSearch} />
       </Button>
       <Input
-        className="rounded-2xl bg-transparent py-1 pl-10"
+        className={classNames(
+          "rounded-2xl bg-transparent py-1 pl-10",
+          inputClassName,
+        )}
+        containerClassName={inputContainerClassName}
         labelVisible={false}
         {...inputProps}
       />

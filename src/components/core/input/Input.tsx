@@ -2,6 +2,7 @@ import { classNames } from "@/utils/style";
 import type { ComponentProps, FunctionComponent } from "react";
 
 export interface InputProps extends Omit<ComponentProps<"input">, "id"> {
+  containerClassName?: string;
   // require id and label for accessibility
   id: string;
   label: string;
@@ -10,10 +11,17 @@ export interface InputProps extends Omit<ComponentProps<"input">, "id"> {
 }
 
 export const Input: FunctionComponent<InputProps> = (props) => {
-  const { className, id, label, labelVisible = true, ...inputProps } = props;
+  const {
+    className,
+    containerClassName,
+    id,
+    label,
+    labelVisible = true,
+    ...inputProps
+  } = props;
 
   return (
-    <div className="inline-flex flex-col">
+    <div className={classNames("inline-flex flex-col", containerClassName)}>
       <label
         htmlFor={id}
         className={classNames("text-md", { "sr-only": !labelVisible })}

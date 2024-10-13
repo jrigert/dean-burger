@@ -1,4 +1,5 @@
 import { Badge } from "@/components/core/badge/Badge";
+import { MobileSearchPanel } from "@/components/layout/mobile-search-panel/MobileSearchPanel";
 import { Routes } from "@/constants/routes";
 import { ProductSearchController } from "@/controllers/product/product-search/ProductSearchController";
 import { classNames } from "@/utils/style";
@@ -31,29 +32,41 @@ export const Header: FunctionComponent<HeaderProps> = (props) => {
             Dean Burger
           </Link>
 
-          <ProductSearchController />
+          <ProductSearchController
+            className="hidden sm:block"
+            id="search-menu"
+          />
         </div>
 
-        <div className="relative">
-          <Link
-            href={`/${Routes.Cart}`}
-            aria-label="Go To Cart"
-            className="text-2xl text-primary"
-          >
-            <FontAwesomeIcon
-              icon={faShoppingCart}
-              className="transition-transform hover:scale-110"
+        <div className="flex items-center gap-3">
+          <MobileSearchPanel className="sm:hidden">
+            <ProductSearchController
+              id="mobile-search-menu"
+              inputContainerClassName="flex w-full"
             />
-          </Link>
+          </MobileSearchPanel>
 
-          {orderCount ? (
-            <Badge
-              className="absolute -right-3 -top-2"
-              aria-label={`There are ${orderCount} items in your cart`}
+          <div className="relative">
+            <Link
+              href={`/${Routes.Cart}`}
+              aria-label="Go To Cart"
+              className="text-2xl text-primary"
             >
-              {orderCount}
-            </Badge>
-          ) : null}
+              <FontAwesomeIcon
+                icon={faShoppingCart}
+                className="transition-transform hover:scale-110"
+              />
+            </Link>
+
+            {orderCount ? (
+              <Badge
+                className="absolute -right-3 -top-2"
+                aria-label={`There are ${orderCount} items in your cart`}
+              >
+                {orderCount}
+              </Badge>
+            ) : null}
+          </div>
         </div>
       </div>
     </header>

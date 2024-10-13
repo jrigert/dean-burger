@@ -11,7 +11,17 @@ import {
   useState,
 } from "react";
 
-export const ProductSearchController: FunctionComponent = () => {
+export interface ProductSearchControllerProps {
+  className?: string;
+  inputClassName?: string;
+  inputContainerClassName?: string;
+  id: string;
+}
+
+export const ProductSearchController: FunctionComponent<
+  ProductSearchControllerProps
+> = (props) => {
+  const { className, id, inputClassName, inputContainerClassName } = props;
   const searchParams = useSearchParams();
   const { replace } = useRouter();
   const currentQueryValue = searchParams.get(SearchParamKeys.query) ?? "";
@@ -39,10 +49,12 @@ export const ProductSearchController: FunctionComponent = () => {
   );
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={className}>
       <SearchInput
+        inputClassName={inputClassName}
+        inputContainerClassName={inputContainerClassName}
         placeholder="Search the menu..."
-        id="search-menu"
+        id={id}
         label="Search the menu"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
