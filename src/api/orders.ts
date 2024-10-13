@@ -21,7 +21,10 @@ export const getOrderIdCookie = (
 export const getOrderById = async (
   id: number,
 ): Promise<OrderWithItems | null> =>
-  prisma.orders.findUnique({ where: { id }, include: { order_items: true } });
+  prisma.orders.findUnique({
+    where: { id },
+    include: { order_items: { orderBy: { id: "asc" } } },
+  });
 
 export const getUserOrder = async (): Promise<OrderWithItems | null> => {
   const orderId = getOrderIdCookie();

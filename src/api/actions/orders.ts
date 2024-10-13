@@ -59,6 +59,18 @@ export const addItemToOrder = async (payload: AddItemToOrderPayload) => {
   redirect("/");
 };
 
+export interface UpdateOrderItemPayload {
+  id: number;
+  quantity: number;
+}
+
+export const updateOrderItem = async (payload: UpdateOrderItemPayload) => {
+  const { id, ...updates } = payload;
+  await prisma.order_items.update({ where: { id }, data: { ...updates } });
+
+  revalidatePath(`/${Routes.Cart}`);
+};
+
 export interface DeleteOrderItemPayload {
   id: number;
 }

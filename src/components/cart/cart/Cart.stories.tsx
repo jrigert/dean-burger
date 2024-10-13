@@ -18,6 +18,12 @@ const meta = {
       </div>
     ),
   ],
+  args: {
+    onDeleteOrderItem: fn(),
+    onUpdateOrderItemQuantity: fn(),
+    order: MOCK_ORDER_WITH_ITEMS,
+    products: MOCK_PRODUCTS,
+  },
 } satisfies Meta<typeof Cart>;
 
 export default meta;
@@ -25,6 +31,7 @@ type CartStory = StoryObj<typeof meta>;
 
 export const Default: CartStory = {
   args: {
+    busyItemIds: [2],
     onDeleteOrderItem: fn(),
     order: MOCK_ORDER_WITH_ITEMS,
     products: MOCK_PRODUCTS,
@@ -33,8 +40,7 @@ export const Default: CartStory = {
 
 export const NoItems: CartStory = {
   args: {
-    onDeleteOrderItem: fn(),
+    busyItemIds: [],
     order: MOCK_ORDER_WITH_ITEMS_EMPTY,
-    products: MOCK_PRODUCTS,
   },
 };

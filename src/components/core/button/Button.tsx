@@ -1,6 +1,6 @@
+import { Spinner } from "@/components/core/spinner/Spinner";
 import { classNames } from "@/utils/style";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { cva, VariantProps } from "class-variance-authority";
 import { type ComponentProps, type FunctionComponent, useMemo } from "react";
@@ -29,7 +29,13 @@ const buttonVariants = cva(
         ],
         link: ["hover:underline"],
         icon: ["leading-[0.5rem]"],
-        "icon-solid": ["leading-[0.5rem]", "rounded-full", "w-8", "h-8"],
+        "icon-solid": [
+          "leading-[0.5rem]",
+          "rounded-full",
+          "w-8",
+          "h-8",
+          "disabled:bg-slate-300",
+        ],
       },
       color: {
         primary: [],
@@ -106,10 +112,7 @@ export const Button: FunctionComponent<ButtonProps> = (props) => {
     >
       {icon ? <FontAwesomeIcon icon={icon} /> : null}
       {isLoading ? (
-        <FontAwesomeIcon
-          icon={faSpinner}
-          className="absolute bottom-0 left-0 right-0 top-0 m-auto animate-spin"
-        />
+        <Spinner className="absolute bottom-0 left-0 right-0 top-0 m-auto animate-spin" />
       ) : null}
       <span className={classNames({ invisible: isLoading })}>{children}</span>
     </button>

@@ -13,12 +13,20 @@ import { faFaceFrownOpen } from "@fortawesome/free-solid-svg-icons";
 
 export interface CartProps {
   onDeleteOrderItem: (orderItemId: number) => void;
+  onUpdateOrderItemQuantity: (orderItemId: number, quantity: number) => void;
   order: OrderWithItems | null;
   products: Product[];
+  busyItemIds: number[];
 }
 
 export const Cart: FunctionComponent<CartProps> = (props) => {
-  const { order, onDeleteOrderItem, products } = props;
+  const {
+    busyItemIds,
+    order,
+    onDeleteOrderItem,
+    onUpdateOrderItemQuantity,
+    products,
+  } = props;
 
   const { productOrderItems } = useCart({
     products,
@@ -37,8 +45,10 @@ export const Cart: FunctionComponent<CartProps> = (props) => {
           {productOrderItems.map((product) => (
             <li key={product.id}>
               <CartItem
+                isBusy={busyItemIds.includes(product.orderItemId)}
                 productOrderItem={product}
                 onDelete={onDeleteOrderItem}
+                onUpdateQuantity={onUpdateOrderItemQuantity}
               />
             </li>
           ))}

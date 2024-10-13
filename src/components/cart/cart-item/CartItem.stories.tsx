@@ -12,18 +12,26 @@ const meta = {
       <Story />
     </div>
   ),
+  args: {
+    onDelete: fn(),
+    onUpdateQuantity: fn(),
+    productOrderItem: {
+      ...MOCK_PRODUCT,
+      quantity: 1,
+      orderItemId: 1,
+    },
+  },
 } satisfies Meta<typeof CartItem>;
 
 export default meta;
 type CartItemStory = StoryObj<typeof meta>;
 
 export const Default: CartItemStory = {
+  args: {},
+};
+
+export const Busy: CartItemStory = {
   args: {
-    onDelete: fn(),
-    productOrderItem: {
-      ...MOCK_PRODUCT,
-      quantity: 1,
-      orderItemId: 1,
-    },
+    isBusy: true,
   },
 };
