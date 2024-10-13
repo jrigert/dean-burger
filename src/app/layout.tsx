@@ -1,4 +1,4 @@
-import { PageController } from "@/controllers/PageController";
+import { PageController } from "@/controllers/page/PageController";
 import { AlertProvider } from "@/providers/AlertProvider";
 import { baseStyles } from "@/styles";
 import { classNames } from "@/utils/style";
