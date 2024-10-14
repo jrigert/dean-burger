@@ -11,6 +11,7 @@ const config: Config = {
       colors: {
         background: "rgba(var(--color-background), <alpha-value>)",
         foreground: "rgba(var(--color-foreground), <alpha-value>)",
+        card: "rgba(var(--color-card), <alpha-value>)",
         primary: {
           DEFAULT: "rgba(var(--color-primary), <alpha-value>)",
           foreground: "rgba(var(--color-primary-foreground), <alpha-value>)",
