@@ -17,7 +17,7 @@ export const ProductItem: FunctionComponent<ProductItemProps> = (props) => {
   return (
     <Link
       href={`/${Routes.ProductDetails}/${slug}`}
-      className="block w-full max-w-[400px] overflow-hidden rounded-xl shadow transition hover:scale-102 hover:shadow-lg sm:w-[250px]"
+      className="bg-container block w-full max-w-[400px] overflow-hidden rounded-xl shadow transition hover:scale-102 hover:shadow-lg sm:w-[250px]"
     >
       <div className="relative h-[250px] w-full sm:h-[200px]">
         {/*NOTE: setting empty alt tag here as we don't get this from the API and
@@ -36,7 +36,7 @@ export const ProductItem: FunctionComponent<ProductItemProps> = (props) => {
           {name}
         </Heading>
 
-        <strong className="font-teko text-slate-600">
+        <strong className="text-foreground-dark font-teko">
           <Price price={price} />
         </strong>
 

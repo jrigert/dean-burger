@@ -6,6 +6,7 @@ import { classNames } from "@/utils/style";
 import type { Metadata } from "next";
 import "../styles/globals.css";
 import { getServerSession } from "@/api/auth";
+import { ThemeProvider } from "next-themes";
 import type { ReactNode } from "react";
 
 // recommended NextJS config: https://docs.fontawesome.com/web/use-with/react/use-with#nextjs
@@ -28,13 +29,15 @@ export default async function RootLayout({
   const user = session?.user;
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={classNames(baseStyles, "bg-background")}>
-        <AlertProvider>
-          <PageTemplate order={order} user={user}>
-            {children}
-          </PageTemplate>
-        </AlertProvider>
+        <ThemeProvider attribute="class">
+          <AlertProvider>
+            <PageTemplate order={order} user={user}>
+              {children}
+            </PageTemplate>
+          </AlertProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

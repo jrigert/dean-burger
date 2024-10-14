@@ -60,7 +60,7 @@ export const Popover: FunctionComponent<PropsWithChildren<PopoverProps>> = (
       {isExpanded ? (
         <div
           className={classNames(
-            "fixed right-0 top-14 z-10 min-w-[250px] border-t border-t-slate-300 bg-background p-6 shadow-xl",
+            "bg-container fixed right-0 top-14 z-10 min-w-[250px] border-t border-t-slate-300 p-6 shadow-xl dark:border-t-gray-700",
             panelClassName,
           )}
           id={popoverId}

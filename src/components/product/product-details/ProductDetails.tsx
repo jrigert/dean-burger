@@ -49,7 +49,7 @@ export const ProductDetails: FunctionComponent<ProductDetailsProps> = (
       <div className="px-6 pt-1 sm:pt-4 md:max-w-[500px] md:px-12">
         <Heading tag="h1">{name}</Heading>
 
-        <strong className="font-teko text-3xl text-slate-600">
+        <strong className="text-foreground-dark font-teko text-3xl">
           <Price price={price} />
         </strong>
 

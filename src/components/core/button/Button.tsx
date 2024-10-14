@@ -35,6 +35,7 @@ const buttonVariants = cva(
           "w-8",
           "h-8",
           "disabled:bg-slate-300",
+          "dark:disabled:bg-gray-500",
         ],
       },
       color: {

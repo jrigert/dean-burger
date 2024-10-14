@@ -3,6 +3,7 @@ import { Popover } from "@/components/core/popover/Popover";
 import { MobileSearchPanel } from "@/components/layout/mobile-search-panel/MobileSearchPanel";
 import { Routes } from "@/constants/routes";
 import { SignOutButton } from "@/controllers/auth/sign-out-button/SignOutButton";
+import { ThemeToggle } from "@/controllers/core/theme-toggle/ThemeToggle";
 import { ProductSearchController } from "@/controllers/product/product-search/ProductSearchController";
 import { SessionUser } from "@/types/next-auth";
 import { classNames } from "@/utils/style";
@@ -23,7 +24,7 @@ export const Header: FunctionComponent<HeaderProps> = (props) => {
   return (
     <header
       className={classNames(
-        "fixed left-0 top-0 z-20 h-14 w-full items-center bg-background shadow-xl",
+        "bg-container fixed left-0 top-0 z-20 h-14 w-full items-center shadow-xl",
         className,
       )}
     >
@@ -31,7 +32,7 @@ export const Header: FunctionComponent<HeaderProps> = (props) => {
         <div className="flex items-center gap-6">
           <Link
             href="/"
-            className="font-teko text-3xl font-bold tracking-wider text-primary hover:underline"
+            className="font-teko text-2xl font-bold tracking-wide text-primary hover:underline sm:text-3xl sm:tracking-wider"
           >
             Dean Burger
           </Link>
@@ -42,13 +43,15 @@ export const Header: FunctionComponent<HeaderProps> = (props) => {
           />
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           <MobileSearchPanel className="sm:hidden">
             <ProductSearchController
               id="mobile-search-menu"
               inputContainerClassName="flex w-full"
             />
           </MobileSearchPanel>
+
+          <ThemeToggle />
 
           {user ? (
             <Popover

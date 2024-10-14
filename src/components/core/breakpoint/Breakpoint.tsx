@@ -13,7 +13,7 @@ export const Breakpoint: FunctionComponent = () => {
   }
 
   return (
-    <div className="z-12 fixed left-5 top-16 border border-foreground bg-background p-3">
+    <div className="z-12 bg-container fixed left-5 top-16 border border-foreground p-3">
       <span className="sm:hidden">XS</span>
       <span className="hidden sm:max-md:block">SM</span>
       <span className="hidden md:max-lg:block">MD</span>

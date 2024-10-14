@@ -52,7 +52,7 @@ export const CartItem: FunctionComponent<CartItemProps> = (props) => {
     <div className="relative">
       <div
         className={classNames(
-          "flex justify-between gap-6 border-y border-slate-300 py-4 align-middle",
+          "flex justify-between gap-6 border-y border-slate-300 py-4 align-middle dark:border-gray-700",
           isBusy && "opacity-50",
         )}
       >
@@ -84,7 +84,7 @@ export const CartItem: FunctionComponent<CartItemProps> = (props) => {
         </div>
 
         <div className="flex flex-col items-end justify-center gap-2">
-          <strong className="font-teko text-2xl text-slate-600">
+          <strong className="text-foreground-dark font-teko text-2xl">
             <Price price={totalPrice} />
           </strong>
 

@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  darkMode: "class",
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
@@ -12,6 +13,9 @@ const config: Config = {
         background: "rgba(var(--color-background), <alpha-value>)",
         foreground: "rgba(var(--color-foreground), <alpha-value>)",
         card: "rgba(var(--color-card), <alpha-value>)",
+        charcoal: "rgba(var(--color-charcoal), <alpha-value>)",
+        container: "rgba(var(--color-container), <alpha-value>)",
+        "foreground-dark": "rgba(var(--color-foreground-dark), <alpha-value>)",
         primary: {
           DEFAULT: "rgba(var(--color-primary), <alpha-value>)",
           foreground: "rgba(var(--color-primary-foreground), <alpha-value>)",

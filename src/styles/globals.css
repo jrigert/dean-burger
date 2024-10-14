@@ -5,20 +5,35 @@
 :root {
   --color-full-white: 255, 255, 255;
   --color-white: 242, 242, 242;
+  --color-off-white: 71 85 105;
   --color-black: 23, 23, 23;
   --color-orange: 251, 122, 43;
   --color-red: 203, 54, 20;
   --color-green: 176, 212, 45;
+  --color-charcoal: 34, 34, 34;
 
   --color-background: var(--color-white);
   --color-foreground: var(--color-black);
+  --color-foreground-dark: var(--color-off-white);
   --color-primary: var(--color-orange);
-  --color-primary-foreground: var(--color-foreground);
+  --color-primary-foreground: var(--color-black);
   --color-success: var(--color-green);
-  --color-success-foreground: var(--color-foreground);
+  --color-success-foreground: var(--color-black);
   --color-danger: var(--color-red);
   --color-danger-foreground: var(--color-white);
-  --color-card: var(--color-full-white)
+  --color-card: var(--color-full-white);
+  --color-container: var(--color-background);
+}
+
+html.dark {
+  --color-white: 230, 230, 230;
+  --color-white-dark: 175, 175, 175;
+
+  --color-background: var(--color-black);
+  --color-foreground: var(--color-white);
+  --color-foreground-dark: var(--color-white-dark);
+  --color-card: var(--color-charcoal);
+  --color-container: var(--color-charcoal);
 }
 
 @media (prefers-color-scheme: dark) {
