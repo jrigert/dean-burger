@@ -1,5 +1,6 @@
 "use client";
 
+import { registerUser } from "@/api/actions/users";
 import { AuthForm } from "@/components/core/auth-form/AuthForm";
 import { Input } from "@/components/core/input/Input";
 import {
@@ -9,50 +10,38 @@ import {
 } from "@/constants/error";
 import { Routes } from "@/constants/routes";
 import { useAlert } from "@/hooks/useAlert";
-import { isApiError } from "@/utils/error";
 import { useRouter } from "next/navigation";
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
+import { useFormState } from "react-dom";
 
 export const RegisterForm: FunctionComponent = () => {
-  const [firstName, setFirstName] = useState<string>("");
-  const router = useRouter();
   const { setAlert } = useAlert();
+  const [firstName, setFirstName] = useState<string>("");
+  const [registerUserState, registerUserAction] = useFormState(
+    registerUser,
+    {},
+  );
+  const router = useRouter();
 
-  const handleSubmit = async (values: { email: string; password: string }) => {
-    try {
-      const { email, password } = values;
-
-      const response = await fetch("/api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password, firstName }),
+  useEffect(() => {
+    if (registerUserState.success) {
+      setAlert({
+        type: "success",
+        message: "Your account has been created! You can now log in.",
       });
 
-      if (response?.ok) {
-        setAlert({
-          type: "success",
-          message: "Your account has been created! You can now log in.",
-        });
-
-        router.push(`/${Routes.Login}`);
-        router.refresh();
-        return;
-      }
-
-      throw await response.json();
-    } catch (e) {
+      router.push(`/${Routes.Login}`);
+    } else if (registerUserState.error) {
       let errorMessage = GenericErrorMessage;
 
-      if (isApiError(e)) {
-        if (e.errorCode === PrismaErrorCodes.UniqueConstraintViolation) {
-          errorMessage = "A user already exists with that username";
-        }
+      const { errorCode } = registerUserState.error;
 
-        if (e.errorCode === RegisterErrorCodes.MissingField) {
-          errorMessage = "All fields are required";
-        }
+      if (errorCode === PrismaErrorCodes.UniqueConstraintViolation) {
+        errorMessage = "A user already exists with that username";
+      }
+
+      if (errorCode === RegisterErrorCodes.MissingField) {
+        errorMessage = "All fields are required";
       }
 
       setAlert({
@@ -60,11 +49,12 @@ export const RegisterForm: FunctionComponent = () => {
         type: "danger",
       });
     }
-  };
+  }, [registerUserState, setAlert]);
 
   return (
     <AuthForm
-      onSubmit={handleSubmit}
+      useServerAction
+      action={registerUserAction}
       submitButtonText="Create"
       title="Create Account"
     >

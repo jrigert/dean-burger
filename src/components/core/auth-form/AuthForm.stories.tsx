@@ -14,6 +14,7 @@ type AuthFormStory = StoryObj<typeof meta>;
 
 export const Default: AuthFormStory = {
   args: {
+    useServerAction: false,
     onSubmit: fn(),
     title: "Sign In",
     submitButtonText: "Sign In",
@@ -22,9 +23,20 @@ export const Default: AuthFormStory = {
 
 export const WithChildren: AuthFormStory = {
   args: {
+    useServerAction: false,
     onSubmit: fn(),
     title: "Create Account",
     submitButtonText: "Create",
     children: <Input id="name" label="Name" />,
+  },
+};
+
+export const Loading: AuthFormStory = {
+  args: {
+    useServerAction: false,
+    isLoading: true,
+    onSubmit: fn(),
+    title: "Sign In",
+    submitButtonText: "Sign In",
   },
 };

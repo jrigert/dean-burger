@@ -2,50 +2,63 @@ import { Button } from "@/components/core/button/Button";
 import { Container } from "@/components/core/container/Container";
 import { Heading } from "@/components/core/heading/Heading";
 import { Input } from "@/components/core/input/Input";
+import { SubmitButton } from "@/controllers/core/submit-button/SubmitButton";
 import {
+  ComponentProps,
   FormEvent,
   FunctionComponent,
   PropsWithChildren,
-  useCallback,
   useState,
 } from "react";
 
-export interface AuthFormProps {
-  onSubmit: (values: { email: string; password: string }) => Promise<void>;
+interface BaseAuthFormProps {
   submitButtonText: string;
   title: string;
 }
 
+interface AuthFormWithOnSubmitProps extends BaseAuthFormProps {
+  isLoading?: boolean;
+  useServerAction: false;
+  onSubmit: (
+    event: FormEvent,
+    values: { email: string; password: string },
+  ) => Promise<void>;
+}
+
+interface AuthFormWithServerActionProps extends BaseAuthFormProps {
+  useServerAction: true;
+  action: ComponentProps<"form">["action"];
+}
+
+export type AuthFormProps =
+  | AuthFormWithOnSubmitProps
+  | AuthFormWithServerActionProps;
+
 export const AuthForm: FunctionComponent<PropsWithChildren<AuthFormProps>> = (
   props,
 ) => {
-  const { children, onSubmit, submitButtonText, title } = props;
+  const { children, submitButtonText, title, useServerAction } = props;
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const handleSubmit = useCallback(
-    async (e: FormEvent) => {
-      try {
-        e.preventDefault();
-        setIsLoading(true);
-
-        await onSubmit({ email, password });
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      } catch (e) {
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    [email, password, onSubmit],
-  );
+  const onSubmit = useServerAction ? undefined : props.onSubmit;
+  const isLoading = useServerAction ? undefined : props.isLoading;
+  const action = useServerAction ? props.action : undefined;
 
   return (
     <Container fullHeight className="flex items-center justify-center">
       <div className="rounded-xl bg-white p-12 sm:min-w-[500px]">
         <Heading tag="h1">{title}</Heading>
 
-        <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
+        <form
+          onSubmit={
+            onSubmit
+              ? (event: FormEvent) => onSubmit(event, { email, password })
+              : undefined
+          }
+          action={action}
+          className="mt-6 flex flex-col gap-4"
+        >
           <Input
             required
             id="email"
@@ -67,9 +80,15 @@ export const AuthForm: FunctionComponent<PropsWithChildren<AuthFormProps>> = (
 
           {children}
 
-          <Button type="submit" className="mt-8" isLoading={isLoading}>
-            {submitButtonText}
-          </Button>
+          <div className="mt-8">
+            {useServerAction ? (
+              <SubmitButton className="w-full">{submitButtonText}</SubmitButton>
+            ) : (
+              <Button className="w-full" type="submit" isLoading={isLoading}>
+                {submitButtonText}
+              </Button>
+            )}
+          </div>
         </form>
       </div>
     </Container>
