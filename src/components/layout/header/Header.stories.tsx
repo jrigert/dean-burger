@@ -5,6 +5,10 @@ const meta = {
   component: Header,
   title: "Layout/Header",
   tags: ["autodocs"],
+  args: {
+    // remove the fixed positioning
+    className: "relative",
+  },
 } satisfies Meta<typeof Header>;
 
 export default meta;
@@ -12,16 +16,24 @@ type HeaderStory = StoryObj<typeof meta>;
 
 export const Default: HeaderStory = {
   args: {
-    // remove the fixed positioning
-    className: "relative",
     orderCount: 0,
+    user: undefined,
   },
 };
 
 export const WithOrderCount: HeaderStory = {
   args: {
-    // remove the fixed positioning
-    className: "relative",
     orderCount: 4,
+    user: undefined,
+  },
+};
+
+export const LoggedIn: HeaderStory = {
+  args: {
+    orderCount: 4,
+    user: {
+      id: 1,
+      firstName: "Jon",
+    },
   },
 };

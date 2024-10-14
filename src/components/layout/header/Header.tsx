@@ -1,20 +1,24 @@
 import { Badge } from "@/components/core/badge/Badge";
+import { Popover } from "@/components/core/popover/Popover";
 import { MobileSearchPanel } from "@/components/layout/mobile-search-panel/MobileSearchPanel";
 import { Routes } from "@/constants/routes";
+import { LogoutButton } from "@/controllers/auth/logout-button/LogoutButton";
 import { ProductSearchController } from "@/controllers/product/product-search/ProductSearchController";
+import { SessionUser } from "@/types/next-auth";
 import { classNames } from "@/utils/style";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingCart, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import type { FunctionComponent } from "react";
 
 export interface HeaderProps {
   className?: string;
+  user: SessionUser | undefined;
   orderCount: number;
 }
 
 export const Header: FunctionComponent<HeaderProps> = (props) => {
-  const { className, orderCount } = props;
+  const { className, user, orderCount } = props;
 
   return (
     <header
@@ -45,6 +49,33 @@ export const Header: FunctionComponent<HeaderProps> = (props) => {
               inputContainerClassName="flex w-full"
             />
           </MobileSearchPanel>
+
+          {user ? (
+            <Popover
+              buttonIcon={faUser}
+              popoverId="user-panel"
+              accessibilityName="user panel"
+            >
+              <div>
+                <strong>Welcome, {user.firstName}!</strong>
+              </div>
+
+              <LogoutButton variant="link" className="mt-6">
+                Log Out
+              </LogoutButton>
+            </Popover>
+          ) : (
+            <Link
+              href={`/${Routes.Login}`}
+              aria-label="Sign In"
+              className="text-2xl text-primary"
+            >
+              <FontAwesomeIcon
+                icon={faUser}
+                className="transition-transform hover:scale-110"
+              />
+            </Link>
+          )}
 
           <div className="relative">
             <Link

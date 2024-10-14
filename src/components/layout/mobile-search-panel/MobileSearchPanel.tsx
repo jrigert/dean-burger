@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/core/button/Button";
+import { Popover } from "@/components/core/popover/Popover";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { useSearchParams } from "next/navigation";
 import {
@@ -21,30 +21,21 @@ export const MobileSearchPanel: FunctionComponent<
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const searchParams = useSearchParams();
 
-  const toggleExpanded = () => setIsExpanded(!isExpanded);
-
   useEffect(() => {
     setIsExpanded(false);
   }, [searchParams]);
 
   return (
-    <span className={className}>
-      <Button
-        variant="icon"
-        icon={faSearch}
-        aria-label={`${isExpanded ? "Close" : "Open"} search panel`}
-        onClick={toggleExpanded}
-        aria-controls="search-panel"
-        aria-expanded={isExpanded}
-      />
-      {isExpanded ? (
-        <div
-          className="fixed right-0 top-14 z-10 w-full border-t border-t-slate-300 bg-background p-6 shadow-xl"
-          id="search-panel"
-        >
-          {children}
-        </div>
-      ) : null}
-    </span>
+    <Popover
+      buttonIcon={faSearch}
+      popoverId="search-panel"
+      accessibilityName="search panel"
+      className={className}
+      isExpanded={isExpanded}
+      onIsExpandedChange={setIsExpanded}
+      panelClassName="w-full"
+    >
+      {children}
+    </Popover>
   );
 };
