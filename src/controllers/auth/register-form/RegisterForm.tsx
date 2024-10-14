@@ -3,6 +3,7 @@
 import { registerUser } from "@/api/actions/users";
 import { AuthForm } from "@/components/core/auth-form/AuthForm";
 import { Input } from "@/components/core/input/Input";
+import { Link } from "@/components/core/link/Link";
 import {
   GenericErrorMessage,
   PrismaErrorCodes,
@@ -57,6 +58,14 @@ export const RegisterForm: FunctionComponent = () => {
       action={registerUserAction}
       submitButtonText="Create"
       title="Create Account"
+      footerChildren={
+        <div className="mt-2">
+          <p>
+            Already have an account?{" "}
+            <Link href={`/${Routes.Login}`}>Sign in now!</Link>
+          </p>
+        </div>
+      }
     >
       <Input
         required

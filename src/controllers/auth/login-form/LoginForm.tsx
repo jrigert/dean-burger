@@ -1,6 +1,8 @@
 "use client";
 
 import { AuthForm } from "@/components/core/auth-form/AuthForm";
+import { Link } from "@/components/core/link/Link";
+import { Routes } from "@/constants/routes";
 import { useAlert } from "@/hooks/useAlert";
 import { useRouter } from "next/navigation";
 import { FormEvent, FunctionComponent, useCallback, useState } from "react";
@@ -49,6 +51,14 @@ export const LoginForm: FunctionComponent = () => {
       onSubmit={handleSubmit}
       submitButtonText="Sign In"
       title="Sign In"
+      footerChildren={
+        <div className="mt-2">
+          <p>
+            Don&#39;t have an account yet?{" "}
+            <Link href={`/${Routes.Register}`}>Sign up now!</Link>
+          </p>
+        </div>
+      }
     />
   );
 };

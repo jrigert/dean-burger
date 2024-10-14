@@ -8,12 +8,14 @@ import {
   FormEvent,
   FunctionComponent,
   PropsWithChildren,
+  ReactNode,
   useState,
 } from "react";
 
 interface BaseAuthFormProps {
   submitButtonText: string;
   title: string;
+  footerChildren?: ReactNode;
 }
 
 interface AuthFormWithOnSubmitProps extends BaseAuthFormProps {
@@ -37,7 +39,8 @@ export type AuthFormProps =
 export const AuthForm: FunctionComponent<PropsWithChildren<AuthFormProps>> = (
   props,
 ) => {
-  const { children, submitButtonText, title, useServerAction } = props;
+  const { children, footerChildren, submitButtonText, title, useServerAction } =
+    props;
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
@@ -89,6 +92,8 @@ export const AuthForm: FunctionComponent<PropsWithChildren<AuthFormProps>> = (
               </Button>
             )}
           </div>
+
+          {footerChildren}
         </form>
       </div>
     </Container>
