@@ -22,3 +22,10 @@ model order_items {
   @@unique([order_id, product_id], map: "unique_order_product")
   @@unique([order_id, product_id], map: "unique_order_product_index")
 }
+
+model users {
+  id         Int    @id @default(autoincrement())
+  email      String @unique @db.VarChar(100)
+  password   String @db.VarChar(100)
+  first_name String @db.VarChar(100)
+}
