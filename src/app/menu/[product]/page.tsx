@@ -1,3 +1,4 @@
+import { getUserOrder } from "@/api/orders";
 import { getProductBySlug } from "@/api/products";
 import { ProductDetailsController } from "@/controllers/product/product-details/ProductDetailsController";
 import { NextPage } from "next";
@@ -11,6 +12,7 @@ const ProductDetailsPage: NextPage<ProductDetailsPageProps> = async (props) => {
   const { product: productId } = params;
 
   const product = await getProductBySlug(productId);
+  const order = await getUserOrder();
 
   if (!product) {
     // TODO - error handling - go to custom not found page?
@@ -19,7 +21,7 @@ const ProductDetailsPage: NextPage<ProductDetailsPageProps> = async (props) => {
 
   return (
     <div className="flex items-center justify-center pt-14 md:min-h-screen">
-      <ProductDetailsController product={product} />
+      <ProductDetailsController product={product} orderId={order?.id} />
     </div>
   );
 };

@@ -7,13 +7,14 @@ import { Product } from "@/types/product";
 import { FunctionComponent, useState } from "react";
 
 export interface ProductDetailsControllerProps {
+  orderId: number | undefined;
   product: Product;
 }
 
 export const ProductDetailsController: FunctionComponent<
   ProductDetailsControllerProps
 > = (props) => {
-  const { product } = props;
+  const { product, orderId } = props;
   const { setAlert } = useAlert();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -21,6 +22,7 @@ export const ProductDetailsController: FunctionComponent<
     setIsLoading(true);
 
     await addItemToOrder({
+      orderId,
       productId: product.id,
       quantity,
     });

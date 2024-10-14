@@ -2,7 +2,7 @@ import { Badge } from "@/components/core/badge/Badge";
 import { Popover } from "@/components/core/popover/Popover";
 import { MobileSearchPanel } from "@/components/layout/mobile-search-panel/MobileSearchPanel";
 import { Routes } from "@/constants/routes";
-import { LogoutButton } from "@/controllers/auth/logout-button/LogoutButton";
+import { SignOutButton } from "@/controllers/auth/sign-out-button/SignOutButton";
 import { ProductSearchController } from "@/controllers/product/product-search/ProductSearchController";
 import { SessionUser } from "@/types/next-auth";
 import { classNames } from "@/utils/style";
@@ -60,9 +60,9 @@ export const Header: FunctionComponent<HeaderProps> = (props) => {
                 <strong>Welcome, {user.firstName}!</strong>
               </div>
 
-              <LogoutButton variant="link" className="mt-6">
-                Log Out
-              </LogoutButton>
+              <SignOutButton variant="link" className="mt-6">
+                Sign Out
+              </SignOutButton>
             </Popover>
           ) : (
             <Link

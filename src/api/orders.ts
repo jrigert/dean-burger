@@ -1,5 +1,6 @@
+import { getServerSession } from "@/api/auth";
 import prisma from "@/api/db";
-import { ORDER_ID_COOKIE_KEY } from "@/constants/cookies";
+import { CookieKeys } from "@/constants/cookies";
 import { OrderWithItems } from "@/types/order";
 import type { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 import { cookies } from "next/headers";
@@ -10,7 +11,7 @@ export const getOrderIdCookie = (
 ): number | null => {
   const cookieStore = existingCookieStore ?? cookies();
 
-  const orderIdCookie = cookieStore.get(ORDER_ID_COOKIE_KEY);
+  const orderIdCookie = cookieStore.get(CookieKeys.orderId);
   const orderId = orderIdCookie?.value
     ? Number(orderIdCookie.value)
     : undefined;
@@ -19,21 +20,34 @@ export const getOrderIdCookie = (
   return orderId ? orderId : null;
 };
 
-export const getOrderById = async (
-  id: number,
+export const getOrderByUniqueId = async (
+  query: { id: number } | { user_id: number },
 ): Promise<OrderWithItems | null> =>
   prisma.orders.findUnique({
-    where: { id },
+    where: query,
     include: { order_items: { orderBy: { id: "asc" } } },
   });
 
 const getUserOrder_uncached = async (): Promise<OrderWithItems | null> => {
-  const orderId = getOrderIdCookie();
-  if (!orderId) {
-    return null;
+  const cookieStore = cookies();
+  const orderIdFromCookies = getOrderIdCookie(cookieStore);
+  const session = await getServerSession();
+
+  if (session?.user) {
+    const userId = session.user.id;
+    const userOrder = await getOrderByUniqueId({ user_id: userId });
+
+    // user has an order - return it
+    if (userOrder) {
+      return userOrder;
+    }
   }
 
-  return getOrderById(orderId);
+  if (orderIdFromCookies) {
+    return getOrderByUniqueId({ id: orderIdFromCookies });
+  }
+
+  return null;
 };
 
 export const getUserOrder = cache(getUserOrder_uncached);

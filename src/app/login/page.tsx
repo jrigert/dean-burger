@@ -1,4 +1,4 @@
-import { LoginForm } from "@/controllers/auth/login-form/LoginForm";
+import { SignInForm } from "@/controllers/auth/sign-in-form/SignInForm";
 import { NextPage } from "next";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
@@ -11,7 +11,7 @@ const LoginPage: NextPage = async () => {
     redirect("/");
   }
 
-  return <LoginForm />;
+  return <SignInForm />;
 };
 
 export default LoginPage;

@@ -1,1 +1,3 @@
-export const ORDER_ID_COOKIE_KEY = "order_id";
+export const CookieKeys = {
+  orderId: "order_id",
+} as const;

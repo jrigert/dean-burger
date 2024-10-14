@@ -1,31 +1,38 @@
 "use server";
 
+import { getServerSession } from "@/api/auth";
 import prisma from "@/api/db";
 import { getOrderIdCookie } from "@/api/orders";
-import { ORDER_ID_COOKIE_KEY } from "@/constants/cookies";
+import { CookieKeys } from "@/constants/cookies";
 import { Routes } from "@/constants/routes";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export interface AddItemToOrderPayload {
+  orderId: number | undefined;
   productId: string;
   quantity: number;
 }
 
 export const addItemToOrder = async (payload: AddItemToOrderPayload) => {
-  const { productId, quantity } = payload;
+  const { orderId: existingOrderId, productId, quantity } = payload;
   const cookieStore = cookies();
+  const session = await getServerSession();
+  const userId = session?.user?.id;
 
-  // get orderId from cookie if it exists
-  let orderId = getOrderIdCookie(cookieStore);
+  let orderId = existingOrderId;
 
   // create a new order if we don't have one
   if (!orderId) {
-    const newOrder = await prisma.orders.create({ data: {} });
+    const data = userId ? { user_id: userId } : {};
+    const newOrder = await prisma.orders.create({ data });
     orderId = newOrder.id;
 
-    cookieStore.set(ORDER_ID_COOKIE_KEY, orderId.toString());
+    // if a guest, store the order in cookies
+    if (!userId) {
+      cookieStore.set(CookieKeys.orderId, orderId.toString());
+    }
   }
 
   const existingOrderItem = await prisma.order_items.findUnique({
@@ -80,4 +87,30 @@ export const deleteOrderItem = async (payload: DeleteOrderItemPayload) => {
   await prisma.order_items.delete({ where: { id } });
 
   revalidatePath(`/${Routes.Cart}`);
+};
+
+export const associateOrderWithUser = async () => {
+  try {
+    const session = await getServerSession();
+    const cookieStore = cookies();
+    const orderIdFromCookies = getOrderIdCookie(cookieStore);
+
+    // we have a logged in user and an order id in cookies - link the order to the user
+    if (session?.user && orderIdFromCookies) {
+      const userId = session.user.id;
+
+      cookieStore.delete(CookieKeys.orderId);
+
+      // TODO - this will fail silently if we already have an order for this user id
+      // at some point, it might make sense to check if they also have an order ID cookie
+      // and give them an option and delete the other
+      await prisma.orders.update({
+        where: { id: orderIdFromCookies },
+        data: { user_id: userId },
+      });
+    }
+  } catch (e) {
+    // log but fail silently
+    console.error(e);
+  }
 };

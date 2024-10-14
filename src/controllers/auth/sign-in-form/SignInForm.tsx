@@ -1,5 +1,6 @@
 "use client";
 
+import { associateOrderWithUser } from "@/api/actions/orders";
 import { AuthForm } from "@/components/core/auth-form/AuthForm";
 import { Link } from "@/components/core/link/Link";
 import { Routes } from "@/constants/routes";
@@ -8,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { FormEvent, FunctionComponent, useCallback, useState } from "react";
 import { signIn } from "next-auth/react";
 
-export const LoginForm: FunctionComponent = () => {
+export const SignInForm: FunctionComponent = () => {
   const router = useRouter();
   const { setAlert } = useAlert();
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -28,6 +29,9 @@ export const LoginForm: FunctionComponent = () => {
         });
 
         if (response?.ok) {
+          setAlert({ type: "success", message: "Sign in successful!" });
+          await associateOrderWithUser();
+
           router.push("/");
           router.refresh();
           return;
