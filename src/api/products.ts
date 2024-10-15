@@ -6,13 +6,19 @@ interface GetProductsResponse {
 }
 
 export const getProducts = async (): Promise<Product[]> => {
-  const response = await fetch(
-    "https://burgerhub00.github.io/data/products.json",
-  );
+  try {
+    const response = await fetch(
+      "https://burgerhub00.github.io/data/products.json",
+    );
 
-  // TODO - error handling (check for response.ok)
-  const data: GetProductsResponse = await response.json();
-  return data.products;
+    const data: GetProductsResponse = await response.json();
+    return data.products;
+  } catch (e) {
+    console.error(e);
+
+    // probably would want to return some sort of error message
+    return [];
+  }
 };
 
 export const getProductBySlug = async (
