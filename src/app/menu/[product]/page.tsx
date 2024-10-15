@@ -2,6 +2,7 @@ import { getUserOrder } from "@/api/orders";
 import { getProductBySlug } from "@/api/products";
 import { ProductDetailsController } from "@/controllers/product/product-details/ProductDetailsController";
 import { Metadata, NextPage } from "next";
+import { notFound } from "next/navigation";
 
 interface ProductDetailsPageProps {
   params: { product: string };
@@ -39,8 +40,7 @@ const ProductDetailsPage: NextPage<ProductDetailsPageProps> = async (props) => {
   const order = await getUserOrder();
 
   if (!product) {
-    // TODO - error handling - go to custom not found page?
-    return null;
+    notFound();
   }
 
   return (
