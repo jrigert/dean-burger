@@ -7,17 +7,24 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 export interface SearchInputProps
   extends Omit<ComponentProps<typeof Input>, "labelVisible"> {
+  buttonAccessibilityLabel: string;
   inputContainerClassName?: string;
   inputClassName?: string;
 }
 
 export const SearchInput: FunctionComponent<SearchInputProps> = (props) => {
-  const { className, inputClassName, inputContainerClassName, ...inputProps } =
-    props;
+  const {
+    buttonAccessibilityLabel,
+    className,
+    inputClassName,
+    inputContainerClassName,
+    ...inputProps
+  } = props;
 
   return (
     <div className={classNames("relative flex items-center", className)}>
       <Button
+        aria-label={buttonAccessibilityLabel}
         variant="icon"
         className="text-md absolute left-3 leading-none text-foreground"
         type="submit"

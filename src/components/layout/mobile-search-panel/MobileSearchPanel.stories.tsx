@@ -17,7 +17,11 @@ export const Default: MobileSearchStory = {
     return (
       <div className="bg-container flex w-[300px] justify-end p-2">
         <MobileSearchPanel {...args}>
-          <SearchInput id="search-menu" label="Search the menu" />
+          <SearchInput
+            id="search-menu"
+            label="Search the menu"
+            buttonAccessibilityLabel="Search Menu"
+          />
         </MobileSearchPanel>
       </div>
     );

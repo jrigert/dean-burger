@@ -85,7 +85,7 @@ export const Header: FunctionComponent<HeaderProps> = (props) => {
           <div className="relative">
             <Link
               href={`/${Routes.Cart}`}
-              aria-label="Go To Cart"
+              aria-label={`Go To Cart${orderCount ? ` - you have ${orderCount} items in your cart` : ""}`}
               className="p-2 text-xl text-primary sm:p-1 sm:text-2xl sm:leading-none"
             >
               <FontAwesomeIcon
@@ -95,10 +95,7 @@ export const Header: FunctionComponent<HeaderProps> = (props) => {
             </Link>
 
             {orderCount ? (
-              <Badge
-                className="absolute -right-3 -top-2"
-                aria-label={`There are ${orderCount} items in your cart`}
-              >
+              <Badge className="absolute -right-3 -top-2" aria-hidden={true}>
                 {orderCount}
               </Badge>
             ) : null}

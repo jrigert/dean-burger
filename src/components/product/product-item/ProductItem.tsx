@@ -7,11 +7,12 @@ import Link from "next/link";
 import type { FunctionComponent } from "react";
 
 export interface ProductItemProps {
+  priority?: boolean;
   product: Product;
 }
 
 export const ProductItem: FunctionComponent<ProductItemProps> = (props) => {
-  const { product } = props;
+  const { priority, product } = props;
   const { description, image, price, name, slug } = product;
 
   return (
@@ -27,7 +28,8 @@ export const ProductItem: FunctionComponent<ProductItemProps> = (props) => {
           alt=""
           fill
           className="object-cover"
-          sizes={"(max-width: 639px) 300px, 250px"}
+          sizes={"(max-width: 639px) 300px, 200px"}
+          priority={priority}
         />
       </div>
 

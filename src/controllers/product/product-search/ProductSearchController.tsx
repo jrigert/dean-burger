@@ -51,6 +51,7 @@ export const ProductSearchController: FunctionComponent<
   return (
     <form onSubmit={handleSubmit} className={className}>
       <SearchInput
+        buttonAccessibilityLabel="Search Products"
         inputClassName={inputClassName}
         inputContainerClassName={inputContainerClassName}
         placeholder="Search the menu..."

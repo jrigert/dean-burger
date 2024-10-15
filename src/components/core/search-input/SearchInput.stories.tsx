@@ -12,6 +12,7 @@ type SearchInputStory = StoryObj<typeof meta>;
 
 export const Default: SearchInputStory = {
   args: {
+    buttonAccessibilityLabel: "Search menu",
     id: "search",
     label: "Search the menu",
     placeholder: "Search the menu...",
