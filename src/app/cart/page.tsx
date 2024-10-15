@@ -1,7 +1,11 @@
 import { getUserOrder } from "@/api/orders";
 import { getProducts } from "@/api/products";
 import { CartController } from "@/controllers/cart/CartController";
-import { NextPage } from "next";
+import { type Metadata, NextPage } from "next";
+
+export const metadata: Metadata = {
+  title: "Your Order | Dean Burger",
+};
 
 const CartPage: NextPage = async () => {
   // TODO - make sure we're caching these properly and not duplicating requests

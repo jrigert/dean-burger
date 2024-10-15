@@ -1,7 +1,11 @@
 import { RegisterForm } from "@/controllers/auth/register-form/RegisterForm";
-import { NextPage } from "next";
+import { type Metadata, NextPage } from "next";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+
+export const metadata: Metadata = {
+  title: "Sign Up | Dean Burger",
+};
 
 const RegisterPage: NextPage = async () => {
   const session = await getServerSession();

@@ -2,13 +2,17 @@ import { getProducts } from "@/api/products";
 import { Container } from "@/components/core/container/Container";
 import { ProductList } from "@/components/product/product-list/ProductList";
 import { SearchParamKeys } from "@/constants/search-params";
-import { NextPage } from "next";
+import { type Metadata, NextPage } from "next";
 
 export interface HomePageProps {
   searchParams?: {
     [SearchParamKeys.query]?: string;
   };
 }
+
+export const metadata: Metadata = {
+  title: "Menu | Dean Burger",
+};
 
 const HomePage: NextPage<HomePageProps> = async (props) => {
   const { searchParams } = props;
