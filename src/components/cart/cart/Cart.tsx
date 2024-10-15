@@ -39,7 +39,6 @@ export const Cart: FunctionComponent<CartProps> = (props) => {
     <Container tag="section" className="max-w-screen-md pb-10 pt-24">
       <Heading tag="h1">Your Order</Heading>
 
-      {/* TODO - better messaging here, add variant in storybook */}
       {hasItems ? (
         <ul className="mt-10">
           {productOrderItems.map((product) => (
