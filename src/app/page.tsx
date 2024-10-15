@@ -16,7 +16,6 @@ export const metadata: Metadata = {
 
 const HomePage: NextPage<HomePageProps> = async (props) => {
   const { searchParams } = props;
-  // TODO: Error handling
   const products = await getProducts();
 
   return (
