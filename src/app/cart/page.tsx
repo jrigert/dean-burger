@@ -8,7 +8,6 @@ export const metadata: Metadata = {
 };
 
 const CartPage: NextPage = async () => {
-  // TODO - make sure we're caching these properly and not duplicating requests
   const order = await getUserOrder();
   const products = await getProducts();
 
