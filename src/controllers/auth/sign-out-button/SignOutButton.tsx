@@ -24,5 +24,7 @@ export const SignOutButton: FunctionComponent<SubmitButtonProps> = (props) => {
     return;
   };
 
-  return <Button type="button" onClick={handleSignOut} {...props} />;
+  return (
+    <Button type="button" onClick={handleSignOut} id="sign-out" {...props} />
+  );
 };

@@ -59,6 +59,7 @@ export const Header: FunctionComponent<HeaderProps> = (props) => {
               buttonClassName="text-xl p-2 sm:p-1 sm:text-2xl leading-none sm:leading-none"
               popoverId="user-panel"
               accessibilityName="user panel"
+              focusOnOpenId="sign-out"
             >
               <div>
                 <strong>Welcome, {user.firstName}!</strong>

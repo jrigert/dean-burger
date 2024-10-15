@@ -35,6 +35,7 @@ export const MobileSearchPanel: FunctionComponent<
       isExpanded={isExpanded}
       onIsExpandedChange={setIsExpanded}
       panelClassName="w-full"
+      focusOnOpenId="mobile-search-menu"
     >
       {children}
     </Popover>
