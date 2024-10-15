@@ -11,6 +11,7 @@ import {
 } from "react";
 
 export interface PopoverProps {
+  buttonClassName?: string;
   buttonIcon: IconDefinition;
   className?: string;
   isExpanded?: boolean;
@@ -24,6 +25,7 @@ export const Popover: FunctionComponent<PropsWithChildren<PopoverProps>> = (
   props,
 ) => {
   const {
+    buttonClassName,
     buttonIcon,
     children,
     className,
@@ -56,6 +58,7 @@ export const Popover: FunctionComponent<PropsWithChildren<PopoverProps>> = (
         onClick={toggleExpanded}
         aria-controls={popoverId}
         aria-expanded={isExpanded}
+        className={buttonClassName}
       />
       {isExpanded ? (
         <div

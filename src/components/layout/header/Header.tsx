@@ -43,7 +43,7 @@ export const Header: FunctionComponent<HeaderProps> = (props) => {
           />
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-5">
           <MobileSearchPanel className="sm:hidden">
             <ProductSearchController
               id="mobile-search-menu"
@@ -51,11 +51,12 @@ export const Header: FunctionComponent<HeaderProps> = (props) => {
             />
           </MobileSearchPanel>
 
-          <ThemeToggle />
+          <ThemeToggle className="p-2 text-xl leading-none sm:text-2xl sm:leading-none" />
 
           {user ? (
             <Popover
               buttonIcon={faUser}
+              buttonClassName="text-xl p-2 sm:p-1 sm:text-2xl leading-none sm:leading-none"
               popoverId="user-panel"
               accessibilityName="user panel"
             >
@@ -71,7 +72,7 @@ export const Header: FunctionComponent<HeaderProps> = (props) => {
             <Link
               href={`/${Routes.Login}`}
               aria-label="Sign In"
-              className="text-2xl text-primary"
+              className="-mt-0.5 p-2 text-xl text-primary sm:p-1 sm:text-2xl sm:leading-none"
             >
               <FontAwesomeIcon
                 icon={faUser}
@@ -84,7 +85,7 @@ export const Header: FunctionComponent<HeaderProps> = (props) => {
             <Link
               href={`/${Routes.Cart}`}
               aria-label="Go To Cart"
-              className="text-2xl text-primary"
+              className="p-2 text-xl text-primary sm:p-1 sm:text-2xl sm:leading-none"
             >
               <FontAwesomeIcon
                 icon={faShoppingCart}

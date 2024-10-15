@@ -28,6 +28,7 @@ export const MobileSearchPanel: FunctionComponent<
   return (
     <Popover
       buttonIcon={faSearch}
+      buttonClassName="text-xl p-2 leading-none"
       popoverId="search-panel"
       accessibilityName="search panel"
       className={className}
