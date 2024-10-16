@@ -88,5 +88,3 @@ After making changes to table structure, the Prisma Schema and Client need to be
 npm run prisma:pull
 npm run prisma:generate
 ```
-
-test commit
