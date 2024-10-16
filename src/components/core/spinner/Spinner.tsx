@@ -14,6 +14,7 @@ export const Spinner: FunctionComponent<SpinnerProps> = (props) => {
     <FontAwesomeIcon
       icon={faSpinner}
       className={classNames("animate-spin text-2xl", className)}
+      data-testid="spinner"
     />
   );
 };
