@@ -18,25 +18,27 @@ export const Alert: FunctionComponent<AlertProps> = (props) => {
     onExit: clearAlert,
   });
 
-  if (!alert) {
-    return null;
-  }
-
-  const { message, type } = alert;
-
   return (
-    <div
-      className={classNames(
-        "fixed right-0 top-14 z-10 w-full -translate-y-16 rounded-b-xl px-6 py-3 font-teko text-xl font-semibold opacity-0 transition duration-1000 sm:w-auto",
-        (animationState === "fade-in" || animationState === "show") &&
-          "opacity-1 translate-y-0",
-        type === "danger"
-          ? "bg-danger text-danger-foreground"
-          : "bg-success text-success-foreground",
-        className,
-      )}
-    >
-      {message}
-    </div>
+    <>
+      {alert ? (
+        <div
+          className={classNames(
+            "fixed right-0 top-14 z-10 w-full -translate-y-16 rounded-b-xl px-6 py-3 font-teko text-xl font-semibold opacity-0 transition duration-1000 sm:w-auto",
+            (animationState === "fade-in" || animationState === "show") &&
+              "opacity-1 translate-y-0",
+            alert.type === "danger"
+              ? "bg-danger text-danger-foreground"
+              : "bg-success text-success-foreground",
+            className,
+          )}
+        >
+          {alert.message}
+        </div>
+      ) : null}
+
+      <div className="sr-only" aria-live="assertive">
+        {alert?.message}
+      </div>
+    </>
   );
 };

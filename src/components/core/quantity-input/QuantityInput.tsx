@@ -34,9 +34,9 @@ export const QuantityInput: FunctionComponent<QuantityProps> = (props) => {
 
   return (
     <div className="inline-flex items-center gap-3">
-      <span className="sr-only">
+      <div className="sr-only" aria-live="polite">
         Quantity of {accessibilityItemName}: {value}
-      </span>
+      </div>
 
       <Button
         variant="icon-solid"

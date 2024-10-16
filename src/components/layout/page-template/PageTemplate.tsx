@@ -19,10 +19,16 @@ export const PageTemplate: FunctionComponent<
 
   return (
     <>
+      <a
+        href="#main"
+        className="absolute top-14 bg-background px-2 text-foreground [&:not(:focus)]:sr-only"
+      >
+        Skip to main content
+      </a>
       <Header orderCount={orderCount} user={user} />
       <Alert />
       <Breakpoint />
-      <main>{children}</main>
+      <main id="main">{children}</main>
     </>
   );
 };
