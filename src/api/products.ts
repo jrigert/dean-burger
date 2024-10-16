@@ -1,24 +1,20 @@
-import { Product } from "@/types/product";
+import {
+  GetProductsResponse,
+  GetProductsResponseSchema,
+  Product,
+} from "@/types/product";
 import { findItemBySlug } from "@/utils/array";
 
-interface GetProductsResponse {
-  products: Product[];
-}
-
 export const getProducts = async (): Promise<Product[]> => {
-  try {
-    const response = await fetch(
-      "https://burgerhub00.github.io/data/products.json",
-    );
+  const response = await fetch(
+    "https://burgerhub00.github.io/data/products.json",
+  );
 
-    const data: GetProductsResponse = await response.json();
-    return data.products;
-  } catch (e) {
-    console.error(e);
+  const data: GetProductsResponse = await response.json();
+  // validate the response
+  GetProductsResponseSchema.parse(data);
 
-    // probably would want to return some sort of error message
-    return [];
-  }
+  return data.products;
 };
 
 export const getProductBySlug = async (

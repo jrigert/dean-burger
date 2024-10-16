@@ -40,6 +40,7 @@ via [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-nex
 - [Next Auth](https://next-auth.js.org/): authentication (with Credentials provider)
 - [PostgreSQL](https://www.postgresql.org/): database (users and orders) - hosted on Vercel
 - [Prisma](https://www.prisma.io/): ORM query system
+- [Zod](https://zod.dev) for schema validation
 - [Vitest](https://vitest.dev/api/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 for unit tests
 - Hosted on [Vercel](https://vercel.com/)
@@ -49,7 +50,6 @@ for unit tests
 ## TODO
 Things I would have liked to get to if I had more time:
 
-- Zod validations on API inputs/responses
 - Theme toggle (dark/light) in Storybook
 - More unit testing
 - Playwright tests

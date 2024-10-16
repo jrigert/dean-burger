@@ -1,12 +1,24 @@
-export interface ApiError {
-  errorMessage: string;
-  errorCode: string;
-}
+export type ApiError<ValidationErrors = undefined> =
+  | {
+      errorMessage: string;
+      errorCode: string;
+    }
+  | ApiValidationError<ValidationErrors>;
+
+export type ApiValidationError<ValidationErrors> = {
+  validationErrors: ValidationErrors;
+};
 
 export const isApiError = (e: unknown): e is ApiError => {
   return Boolean(
     e && typeof e === "object" && "errorMessage" in e && "errorCode" in e,
   );
+};
+
+export const isApiValidationError = <ValidationErrors>(
+  error: ApiError<ValidationErrors>,
+): error is ApiValidationError<ValidationErrors> => {
+  return "validationErrors" in error;
 };
 
 const isObjectWithMessage = (value: unknown): value is { message: string } => {

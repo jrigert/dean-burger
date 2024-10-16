@@ -49,8 +49,8 @@ export const AuthForm: FunctionComponent<PropsWithChildren<AuthFormProps>> = (
   const action = useServerAction ? props.action : undefined;
 
   return (
-    <Container className="bg-card flex h-screen justify-center pt-24 sm:min-h-screen sm:items-center sm:bg-transparent sm:pt-8">
-      <div className="sm:bg-card w-full sm:w-auto sm:min-w-[500px] sm:rounded-xl sm:p-12">
+    <Container className="flex h-screen justify-center bg-card pt-24 sm:min-h-screen sm:items-center sm:bg-transparent sm:pt-8">
+      <div className="w-full sm:w-auto sm:min-w-[500px] sm:rounded-xl sm:bg-card sm:p-12">
         <Heading tag="h1">{title}</Heading>
 
         <form

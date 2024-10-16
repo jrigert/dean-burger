@@ -4,13 +4,10 @@ import { registerUser } from "@/api/actions/users";
 import { AuthForm } from "@/components/core/auth-form/AuthForm";
 import { Input } from "@/components/core/input/Input";
 import { Link } from "@/components/core/link/Link";
-import {
-  GenericErrorMessage,
-  PrismaErrorCodes,
-  RegisterErrorCodes,
-} from "@/constants/error";
+import { GenericErrorMessage, PrismaErrorCodes } from "@/constants/error";
 import { Routes } from "@/constants/routes";
 import { useAlert } from "@/hooks/useAlert";
+import { isApiValidationError } from "@/utils/error";
 import { useRouter } from "next/navigation";
 import { FunctionComponent, useEffect, useState } from "react";
 import { useFormState } from "react-dom";
@@ -33,16 +30,26 @@ export const RegisterForm: FunctionComponent = () => {
 
       router.push(`/${Routes.Login}`);
     } else if (registerUserState.error) {
+      if (isApiValidationError(registerUserState.error)) {
+        const { validationErrors } = registerUserState.error;
+        const errorMessage = Object.values(validationErrors.fieldErrors)
+          .map((fieldError) => fieldError[0])
+          .join("\n");
+
+        setAlert({
+          message: errorMessage,
+          type: "danger",
+        });
+
+        return;
+      }
+
       let errorMessage = GenericErrorMessage;
 
       const { errorCode } = registerUserState.error;
 
       if (errorCode === PrismaErrorCodes.UniqueConstraintViolation) {
         errorMessage = "A user already exists with that username";
-      }
-
-      if (errorCode === RegisterErrorCodes.MissingField) {
-        errorMessage = "All fields are required";
       }
 
       setAlert({

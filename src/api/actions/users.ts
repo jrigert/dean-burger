@@ -1,59 +1,59 @@
 "use server";
 
 import { createUser } from "@/api/users";
-import { RegisterErrorCodes, UnknownErrorCode } from "@/constants/error";
+import { UnknownErrorCode } from "@/constants/error";
 import { ApiError, extractErrorMessage } from "@/utils/error";
 import { Prisma } from "@prisma/client";
 import { hash } from "bcrypt";
+import { z } from "zod";
+
+const RegisterUserInputSchema = z.object({
+  email: z
+    .string()
+    .min(1, { message: "Email is required" })
+    .email({ message: "Invalid email address" }),
+  password: z
+    .string({
+      required_error: "Password is required",
+    })
+    .min(1, { message: "Password is required" }),
+  firstName: z
+    .string({
+      required_error: "First Name is required",
+    })
+    .min(1, { message: "First Name is required" }),
+});
+
+type RegisterUserInputErrors = z.inferFlattenedErrors<
+  typeof RegisterUserInputSchema
+>;
 
 export interface RegisterUserState {
   success?: boolean;
-  error?: ApiError;
+  error?: ApiError<RegisterUserInputErrors>;
 }
-
-const isValidString = (value: FormDataEntryValue | null): value is string => {
-  return Boolean(value && typeof value === "string");
-};
-
-// TODO - would be better to validate with Zod
-const parseInputs = (formData: FormData) => {
-  const email = formData.get("email");
-  const password = formData.get("password");
-  const firstName = formData.get("first-name");
-
-  if (
-    isValidString(email) &&
-    isValidString(password) &&
-    isValidString(firstName)
-  ) {
-    return {
-      email,
-      password,
-      firstName,
-    };
-  }
-
-  return null;
-};
 
 export const registerUser = async (
   previousState: RegisterUserState,
   formData: FormData,
 ): Promise<RegisterUserState> => {
   try {
-    const data = parseInputs(formData);
+    const validatedFields = RegisterUserInputSchema.safeParse({
+      email: formData.get("email"),
+      password: formData.get("password"),
+      firstName: formData.get("first-name"),
+    });
 
-    if (!data) {
+    if (!validatedFields.success) {
       return {
         success: false,
         error: {
-          errorMessage: "Missing required field",
-          errorCode: RegisterErrorCodes.MissingField,
+          validationErrors: validatedFields.error.flatten(),
         },
       };
     }
 
-    const { email, password, firstName } = data;
+    const { email, password, firstName } = validatedFields.data;
 
     const passwordHashed = await hash(password, 10);
     await createUser({ email, firstName, password: passwordHashed });
