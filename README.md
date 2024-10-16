@@ -48,7 +48,6 @@ for unit tests
 - [Lefthook](https://github.com/evilmartians/lefthook) for git hooks
 
 ## TODO
-Things I would have liked to get to if I had more time:
 
 - [ ] Theme toggle (dark/light) in Storybook
 - [ ] More unit testing
