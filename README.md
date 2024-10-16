@@ -50,10 +50,10 @@ for unit tests
 ## TODO
 Things I would have liked to get to if I had more time:
 
-- Theme toggle (dark/light) in Storybook
-- More unit testing
-- Playwright tests
-- Custom error.tsx page(s)
+- [ ] Theme toggle (dark/light) in Storybook
+- [ ] More unit testing
+- [ ] Playwright tests
+- [ ] Custom favicon
 
 ## Running Locally
 
